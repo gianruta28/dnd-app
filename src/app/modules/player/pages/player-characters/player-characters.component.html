@@ -1,0 +1,24 @@
+<app-navigation [title]="'Mis Personajes'"></app-navigation>
+<div class="flex p-3 gap-y-5 justify-center flex-col mt-5 w-full max-w-md m-auto">
+  <button 
+    [routerLink]="['/character/create']"
+    class="
+    mb-5
+    w-full justify-center 
+    rounded-md bg-white 
+    border border-red-700 
+    px-3 py-1.5 text-md
+    leading-6 text-red-700 shadow-sm">
+    <i class="fa-solid fa-plus"></i>
+    New Character
+  </button>
+
+  @if($charactersLoading()){
+    <app-loading [loadingStatus]="true" [noFullScreen]="true"></app-loading>
+  }@else {
+    @for (character of $characters(); track $index) {
+      <app-character-accordion [character]="character"></app-character-accordion>
+    }
+  }
+  
+</div>

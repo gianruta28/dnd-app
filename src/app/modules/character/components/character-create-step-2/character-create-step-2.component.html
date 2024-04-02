@@ -1,0 +1,254 @@
+<div class="w-full max-w-md m-auto">
+  <button 
+    [ngClass]="{
+      'rounded-t': $stepOpened() === characterCreationStep.STEP_2,
+      'rounded': $stepOpened() !== characterCreationStep.STEP_2,
+      'bg-red-700': stepCompleted() >= 1
+    }
+    "
+    class="
+    accordion w-full 
+    px-5 py-2 bg-gray-500
+    text-left text-white 
+    focus:outline-none" 
+    (click)="stepCompleted() >= 1 && toggle()">
+    Paso 2: Stats
+  </button>
+  <div [ngClass]="{'block': $stepOpened() === characterCreationStep.STEP_2 , 'hidden': $stepOpened() !== characterCreationStep.STEP_2 }" 
+        class="content px-1 pt-2 pb-5 border rounded-b border-red-600">
+        <form [formGroup]="stepTwoForm">
+          <ng-container formGroupName="stats">
+            <div class="mt-5 mb-10 flex flex-wrap gap-x-5 justify-center" >
+              <div formGroupName="strength"
+                class="border border-black rounded w-24 h-24 
+                relative justify-center items-center">
+                <p class="w-full text-center font-semibold p-2">Fuerza</p>
+                
+                <input type="number"
+                  formControlName="modifier"
+                  placeholder="___"
+                  class="w-full bg-transparent 
+                  border-none focus:border-none
+                  focus:ring-none focus:ring-none 
+                  focus:ring-transparent text-center text-xl 
+                  number-input
+                  ">
+                <input type="number"
+                  formControlName="base"
+                  placeholder="__"
+                  class="
+                  bg-white
+                  rounded-full
+                  flex justify-center items-center
+                  absolute bottom-[-1rem] left
+                  left-1/4
+                  border border-black
+                  focus:border-black
+                  focus:ring-none focus:ring-none 
+                  focus:ring-transparent text-center text-lg
+                  w-[2.75rem] h-8
+                  number-input
+                  ">
+              </div>
+              <div formGroupName="dexterity"
+                class="border border-black rounded w-24 h-24 
+                relative justify-center items-center">
+                <p class="w-full text-center font-semibold p-2">Destreza</p>
+                <input type="number"
+                  formControlName="modifier"
+                  placeholder="___"
+                  class="w-full bg-transparent 
+                  border-none focus:border-none
+                  focus:ring-none focus:ring-none 
+                  focus:ring-transparent text-center text-xl
+                  number-input
+                  ">
+                <input type="number"     
+                  formControlName="base"
+                  placeholder="__"
+                  class="
+                  bg-white
+                  rounded-full
+                  flex justify-center items-center
+                  absolute bottom-[-1rem] left
+                  left-1/4
+                  border border-black
+                  focus:border-black
+                  focus:ring-none focus:ring-none 
+                  focus:ring-transparent text-center text-lg
+                  w-[2.75rem] h-8
+                  number-input
+                  ">           
+              </div>
+              <div formGroupName="constitution"
+                class="border border-black rounded w-24 h-24 
+                relative justify-center items-center">
+                <p class="w-full text-sm text-center font-semibold p-2">Constitución</p>           
+                <input type="number"
+                  formControlName="modifier"
+                  placeholder="___"
+                  class="w-full bg-transparent 
+                  border-none focus:border-none
+                  focus:ring-none focus:ring-none 
+                  focus:ring-transparent text-center text-xl
+                  number-input
+                  ">
+                <input type="number"     
+                  formControlName="base"
+                  placeholder="__"
+                  class="
+                  bg-white
+                  rounded-full
+                  flex justify-center items-center
+                  absolute bottom-[-1rem] left
+                  left-1/4
+                  border border-black
+                  focus:border-black
+                  focus:ring-none focus:ring-none 
+                  focus:ring-transparent text-center text-lg
+                  w-[2.75rem] h-8
+                  number-input
+                  ">  
+              </div>
+            </div>
+            <div class="mt-10 mb-5 flex flex-wrap gap-x-5 justify-center">
+              <div formGroupName="intelligence"
+              class="border border-black rounded w-24 h-24 
+              relative justify-center items-center">
+                <p class="w-full text-center font-semibold p-2">Inteligencia</p>
+                <input type="number"
+                  formControlName="modifier"
+                  placeholder="___"
+                  class="w-full bg-transparent 
+                  border-none focus:border-none
+                  focus:ring-none focus:ring-none 
+                  focus:ring-transparent text-center text-xl
+                  number-input
+                  ">
+                <input type="number"
+                  formControlName="base"
+                  placeholder="__"
+                  class="
+                  bg-white
+                  rounded-full
+                  flex justify-center items-center
+                  absolute bottom-[-1rem] left
+                  left-1/4
+                  border border-black
+                  focus:border-black
+                  focus:ring-none focus:ring-none 
+                  focus:ring-transparent text-center text-lg
+                  w-[2.75rem] h-8
+                  number-input
+                  ">
+                
+              
+            </div>
+            <div formGroupName="wisdom"
+              class="border border-black rounded w-24 h-24 
+              relative justify-center items-center">
+              <p class="w-full text-center font-semibold p-2">Sabiduría</p>
+              <input type="number"
+                formControlName="modifier"
+                placeholder="___"
+                class="w-full bg-transparent 
+                border-none focus:border-none
+                focus:ring-none focus:ring-none 
+                focus:ring-transparent text-center text-xl
+                number-input
+                ">
+              <input type="number"
+              
+                formControlName="base"
+                placeholder="__"
+                class="
+                bg-white
+                rounded-full
+                flex justify-center items-center
+                absolute bottom-[-1rem] left
+                left-1/4
+                border border-black
+                focus:border-black
+                focus:ring-none focus:ring-none 
+                focus:ring-transparent text-center text-lg
+                w-[2.75rem] h-8
+                number-input
+                ">
+               
+              
+            </div>
+            <div formGroupName="charisma"
+              class="border border-black rounded w-24 h-24 
+              relative justify-center items-center">
+              <p class="w-full text-sm text-center font-semibold p-2">Carisma</p>
+              <input type="number"
+                formControlName="modifier"
+                placeholder="___"
+                class="w-full bg-transparent 
+                border-none focus:border-none
+                focus:ring-none focus:ring-none 
+                focus:ring-transparent text-center text-xl
+                number-input
+                ">
+              <input
+                formControlName="base"
+                placeholder="__"
+                type="number"
+                class="
+                bg-white
+                rounded-full
+                flex justify-center items-center
+                absolute bottom-[-1rem] left
+                left-1/4
+                border border-black
+                focus:border-black
+                focus:ring-none focus:ring-none 
+                focus:ring-transparent text-center text-lg
+                w-[2.75rem] h-8
+                number-input
+                ">
+            </div>
+            </div>
+          </ng-container>
+          <div class="mt-10 mb-5 flex flex-wrap gap-x-5 justify-center">
+            <div class="w-1/4">
+              <label for="armorClass" class="block text-sm font-medium leading-6 text-gray-900 text-center">Armor class</label>
+              <input name="armorClass" formControlName="armorClass" type="number" required 
+              class="block ps-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm text-center
+              ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset 
+              focus:ring-red-700 sm:text-sm sm:leading-6 number-input">
+            </div>
+            <div class="w-1/4">
+              <label for="initiative" class="block text-sm font-medium leading-6 text-gray-900 text-center">Iniciativa</label>
+              <input name="initiative" formControlName="initiative" type="number" required 
+              class="block ps-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm text-center
+              ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset 
+              focus:ring-red-700 sm:text-sm sm:leading-6 number-input">
+            </div>
+            <div class="w-1/4">
+              <label for="speed" class="block text-sm font-medium leading-6 text-gray-900 text-center">Velocidad</label>
+              <input name="speed" formControlName="speed" type="number" required 
+              class="block ps-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm text-center
+              ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset 
+              focus:ring-red-700 sm:text-sm sm:leading-6 number-input">
+            </div>
+
+          </div>
+        </form>
+        <button 
+        
+          (click)="onContinue()"
+          [disabled]="!stepTwoForm.valid"
+          [ngClass]="{
+            'bg-red-700': stepTwoForm.valid
+          }"
+          class="w-full rounded mt-5
+          px-5 py-2 bg-gray-500
+          text-center text-white 
+          border 
+          focus:outline-none" 
+          >
+            Siguiente
+        </button>
+  </div>
+</div>

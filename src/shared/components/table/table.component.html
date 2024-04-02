@@ -1,0 +1,37 @@
+<table class="table">
+    <thead class="table__header">
+        <tr>
+            @for(header of valuesToDisplay.headers; track header){
+                <th class="table__header-column">{{header}}</th>
+            }
+            @if(options){
+                <th class="table__header-column">{{options.header}}</th>
+
+            }
+        </tr>
+    </thead>
+    <tbody class="table_body">
+        @for(element of data; track element.id){
+            <tr class="table__row">
+                @for(accessor of valuesToDisplay.accessors; track accessor){
+                    <td class="table__body-column">{{element[accessor]}}</td>
+                }
+                
+                    <td class="table__body-column">
+                        <div class="table__options-container">
+                            @for(option of options.elements; track option.id){
+                                <button class="table__option-button" (click)="optionClicked(option.id, element.id)">
+                                    <i class="{{option.icon}} table__button-icon"></i>
+                                </button>
+                            }
+                        </div>
+                    </td>                
+                
+            </tr>
+        }@empty(){
+            No Data to show
+        }
+
+        <!-- Add more rows as needed -->
+    </tbody>
+</table>

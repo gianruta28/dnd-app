@@ -1,0 +1,78 @@
+<div class="h-fit w-full mt-5 flex flex-col">
+  <div class="flex gap-x-5">
+    <img src="assets/img/classes-logo/{{character.class}}.jpg" class="w-[4.5rem] rounded" alt="">
+    <div class="flex flex-col gap-y-1.5">
+      <div class="flex gap-x-2">
+        <p class="text-base font-semibold">Race: </p>
+        <p class="text-base">{{'races.' + character.race | translate}}</p>
+      </div>
+      <div class="flex gap-x-2">
+        <p class="text-base font-semibold">Background: </p>
+        <p class="text-base">{{'backgrounds.' + character.background | translate}}</p>
+      </div>
+      <div class="flex gap-x-2">
+        <p class="text-base font-semibold">Level: </p>
+        <p class="text-base">{{character.level}}</p>
+      </div>
+      <div class="flex gap-x-2">
+        <p class="text-base font-semibold">Experience points: </p>
+        <p class="text-base">{{character.experiencePoints}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="flex gap-x-2 gap-y-2 flex-wrap justify-center mt-5 border border-{{character.class}} rounded p-1 ">
+    <div class="flex flex-col rounded-full ">
+      <p class="text-sm" translate>stats.strength</p>
+      <div class="flex text-center justify-center gap-x-1">
+        <p class="text-xs">{{character.attributes.strength.base}}</p>
+        <p class="text-xs font-bold">{{character.attributes.strength.modifier | attributeModifier}}</p>
+      </div>
+    </div>
+    <div class="flex flex-col rounded-full ">
+      <p class="text-sm" translate>stats.dexterity</p>
+      <div class="flex text-center justify-center gap-x-1">
+        <p class="text-xs">{{character.attributes.dexterity.base}}</p>
+        <p class="text-xs font-bold">{{character.attributes.dexterity.modifier | attributeModifier}}</p>
+      </div>
+    </div>
+    <div class="flex flex-col rounded-full ">
+      <p class="text-sm" translate>stats.constitution</p>
+      <div class="flex text-center justify-center gap-x-1">
+        <p class="text-xs">{{character.attributes.constitution.base}}</p>
+        <p class="text-xs font-bold">{{character.attributes.constitution.modifier | attributeModifier}}</p>
+      </div>
+    </div>
+    <div class="flex flex-col rounded-full ">
+      <p class="text-sm" translate>stats.intelligence</p>
+      <div class="flex text-center justify-center gap-x-1">
+        <p class="text-xs">{{character.attributes.intelligence.base}}</p>
+        <p class="text-xs font-bold">{{character.attributes.intelligence.modifier | attributeModifier}}</p>
+      </div>
+    </div>
+    <div class="flex flex-col rounded-full ">
+      <p class="text-sm" translate>stats.wisdom</p>
+      <div class="flex text-center justify-center gap-x-1">
+        <p class="text-xs">{{character.attributes.wisdom.base}}</p>
+        <p class="text-xs font-bold">{{character.attributes.wisdom.modifier | attributeModifier}}</p>
+      </div>
+    </div>
+    <div class="flex flex-col rounded-full ">
+      <p class="text-sm" translate>stats.charisma</p>
+      <div class="flex text-center justify-center gap-x-1">
+        <p class="text-xs">{{character.attributes.charisma.base}}</p>
+        <p class="text-xs font-bold">{{character.attributes.charisma.modifier | attributeModifier}}</p>
+      </div>
+    </div>
+  
+  </div>
+  <div class="flex justify-between mt-3">
+    <button class="w-32 bg-red-700 text-white rounded py-1" 
+      [routerLink]="['/character/'+character.id]">
+      View
+    </button>
+    <button class="w-32 bg-white border border-red-700 text-red-700 rounded py-1" 
+      [routerLink]="['/character/'+character.id + '/edit']">
+      Edit
+    </button>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+.loading {
+  align-items: center;
+  background: rgb(var(--gray));
+  color: var(--ion-color-primary);
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  opacity: var(--smooth);
+  position: absolute;
+  width: 100%;
+  z-index: var(--undertop);
+
+  &--no-bg {
+    background-color: transparent;
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "skills": {
+    "investigation": "Investigacion",
+    "acrobatics": "Acrobacias",
+    "animal": "T. con Animales",
+    "arcana": "C. Arcano",
+    "athletics": "Atletismo",
+    "deception": "Engaño",
+    "history": "Historia",
+    "insight": "Perspicacia",
+    "intimidation": "Intimidación",
+    "medicine": "Medicina",
+    "nature": "Naturaleza",
+    "perception": "Percepción",
+    "performance": "Interpretación",
+    "persuasion": "Persuación",
+    "religion": "Religion",
+    "sleightOfHand": "Juego de Manos",
+    "stealth": "Sigilo",
+    "survival": "Sobrevivencia"
+  },
+  "races": {
+    "dragonborn": "Dracónido",
+    "human": "Humano",
+    "dwarf": "Enano",
+    "eladrin": "Eladrin",
+    "elf": "Elfo",
+    "gnome": "Gnomo",
+    "half-elf": "Semielfo",
+    "half-orc": "Semiorco",
+    "halfling": "Mediano",
+    "tiefling": "Tiefling"
+  },
+  "backgrounds": {
+    "acolyte": "Acólito",
+    "charlatan": "Charlatán",
+    "criminal": "Criminal",
+    "entertainer": "Animador",
+    "folk-hero": "Héroe del pueblo",
+    "guild-artisan": "Artesano Gremial",
+    "hermit": "Ermitaño",
+    "noble": "Noble",
+    "outlander": "Salvaje",
+    "sage": "Erudito",
+    "soldier": "Soldado",
+    "urchin": "Niño",
+    "sailor": "Marinero"
+  },
+  "classes": {
+    "artificier": "Artificiero",
+    "bard": "Bardo",
+    "barbarian": "Bárbaro",
+    "blood-hunter": "Cazador de Sangre",
+    "cleric": "Clérigo",
+    "druid": "Druida",
+    "fighter": "Guerrero",
+    "monk": "Monje",
+    "paladin": "Paladín",
+    "ranger": "Explorador",
+    "rouge": "Pícaro",
+    "sorcerer": "Hechizero",
+    "warlock": "Brujo",
+    "wizard": "Mago"
+  },
+  "stats": {
+    "strength": "Fuerza",
+    "constitution": "Constitución",
+    "dexterity": "Destreza",
+    "wisdom": "Sabiduria",
+    "intelligence": "Inteligencia",
+    "charisma": "Carisma"
+  }
+}

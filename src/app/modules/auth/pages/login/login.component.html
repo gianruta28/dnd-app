@@ -1,0 +1,49 @@
+
+<div class="h-dvh flex items-center justify-center bg-slate-50">
+  <div class="flex flex-col sm:w-96 w-80 justify-center px-6 py-12 lg:px-8 rounded shadow-lg bg-white">
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+      <img class="mx-auto h-24 w-auto" src="assets/img/dnd-logo.png" alt="Your Company">
+      <h2 class="mt-5 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Register</h2>
+    </div>
+  
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+      <form [formGroup]="loginForm">
+        <div>
+        </div>
+        <div class="mt-5">
+          <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
+          <div class="mt-2">
+            <input id="email" name="email" formControlName="username" type="email" class="block w-full rounded-md border-0 ps-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-red-700 sm:text-sm sm:leading-6">
+          </div>
+        </div>
+        <div class="mt-5">
+          <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
+          <div class="mt-2">
+            <input id="password" name="password" formControlName="password" type="password" autocomplete="current-password" required class="block ps-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-red-700 sm:text-sm sm:leading-6">
+          </div>
+        </div>
+  
+        <div class="mt-10">
+          <button 
+            type="submit"
+            (click)="submit()"
+            [disabled]="!this.loginForm.valid" 
+            [ngClass]="{'bg-red-700': this.loginForm.valid}"
+            class="flex w-full justify-center rounded-md 
+                  bg-gray-500 px-3 py-1.5 text-sm font-semibold 
+                  leading-6 text-white shadow-sm
+                  focus-visible:outline focus-visible:outline-2 
+                  focus-visible:outline-offset-2"
+          >
+            Log in
+          </button>
+        </div>
+      </form>
+  
+      <p class="mt-10 text-center text-sm text-gray-500">
+        Don't have an account?
+        <a [routerLink]="['/register']" class="font-semibold leading-6 text-red-700 hover:text-red-500">Register here</a>
+      </p>
+    </div>
+  </div>
+</div>

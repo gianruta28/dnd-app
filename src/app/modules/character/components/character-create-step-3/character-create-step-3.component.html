@@ -1,0 +1,183 @@
+<div class="w-full max-w-md m-auto">
+
+  <button 
+    [ngClass]="{
+      'rounded-t': $stepOpened() === characterCreationStep.STEP_3,
+      'rounded': $stepOpened() !== characterCreationStep.STEP_3,
+      'bg-red-700': stepCompleted() >= 2
+    }
+    "
+    class="
+    accordion w-full 
+    px-5 py-2 bg-gray-500
+    text-left text-white 
+    focus:outline-none" 
+    (click)="stepCompleted() >= 2 && toggle()">
+    Paso 3: Proeficiencia
+  </button>
+  <div [ngClass]="{'block': $stepOpened() === characterCreationStep.STEP_3, 'hidden': $stepOpened() !== characterCreationStep.STEP_3 }" 
+        class="content px-1 pt-2 pb-5 border rounded-b border-red-600">
+        <form [formGroup]="stepThreeForm">
+          <div class="mt-10 mb-5 flex flex-wrap gap-x-5 content-center">
+            <div class="w-full flex flex-col items-center gap-y-2">
+              <label for="proficiencyBonus" class="block text-sm font-medium leading-6 text-gray-900 text-center">Bonificador por competencia</label>
+              <input name="proficiencyBonus" formControlName="proficiencyBonus" type="number" required 
+              class="w-1/4 ps-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm text-center
+              ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset 
+              focus:ring-red-700 sm:text-sm sm:leading-6 number-input">
+            </div>
+
+          </div>
+          <ng-container formGroupName="savingThrows">
+            <div class="mt-5 mb-10 flex flex-wrap gap-x-5 justify-center" >
+              <div formGroupName="strength"
+                class="border border-black rounded w-24 h-24 
+                relative justify-center items-center">
+                <p class="w-full text-center mt-4 font-semibold p-2">Fuerza</p>
+                
+                <input type="number"
+                  formControlName="value"
+                  placeholder="___"
+                  class="w-full bg-transparent 
+                  border-none focus:border-none pt-0
+                  focus:ring-none focus:ring-none 
+                  focus:ring-transparent text-center text-xl 
+                  number-input
+                  ">
+                <div class="absolute top-0 right-0 text-white text-xs rounded-full h-8 w-8 flex items-center justify-center">
+                  <button 
+                    [ngClass]="{'text-red-700': isProficient('strength')}"
+                    class="rounded-full h-6 w-6  text-gray-500" (click)="setProficient('strength')">
+                    <i class="fa-solid fa-hand-fist text-xl "></i>
+                  </button>
+                </div>
+              </div>
+              <div formGroupName="dexterity"
+                class="border border-black rounded w-24 h-24 
+                relative justify-center items-center">
+                <p class="w-full mt-4 text-center font-semibold p-2">Destreza</p>
+                <input type="number"
+                  formControlName="value"
+                  placeholder="___"
+                  class="w-full bg-transparent 
+                  border-none focus:border-none pt-0
+                  focus:ring-none focus:ring-none 
+                  focus:ring-transparent text-center text-xl
+                  number-input
+                  ">    
+                  <div class="absolute top-0 right-0 text-white text-xs rounded-full h-8 w-8 flex items-center justify-center">
+                    <button 
+                      [ngClass]="{'text-red-700': isProficient('dexterity')}"
+                      class="rounded-full h-6 w-6  text-gray-500" (click)="setProficient('dexterity')">
+                      <i class="fa-solid fa-hand-fist text-xl "></i>
+                    </button>
+                  </div>
+              </div>
+              <div formGroupName="constitution"
+                class="border border-black rounded w-24 h-24 
+                relative justify-center items-center">
+                <p class="w-full text-sm mt-4 text-center font-semibold p-2">Constitución</p>           
+                <input type="number"
+                  formControlName="value"
+                  placeholder="___"
+                  class="w-full bg-transparent 
+                  border-none focus:border-none pt-0
+                  focus:ring-none focus:ring-none 
+                  focus:ring-transparent text-center text-xl
+                  number-input
+                  ">
+                  <div class="absolute top-0 right-0 text-white text-xs rounded-full h-8 w-8 flex items-center justify-center">
+                    <button 
+                      [ngClass]="{'text-red-700': isProficient('constitution')}"
+                      class="rounded-full h-6 w-6  text-gray-500" (click)="setProficient('constitution')">
+                      <i class="fa-solid fa-hand-fist text-xl "></i>
+                    </button>
+                  </div>
+              </div>
+            </div>
+            <div class="mt-10 mb-5 flex flex-wrap gap-x-5 justify-center">
+              <div formGroupName="intelligence"
+              class="border border-black rounded w-24 h-24 
+              relative justify-center items-center">
+                <p class="w-full mt-4 text-center font-semibold p-2">Inteligencia</p>
+                <input type="number"
+                  formControlName="value"
+                  placeholder="___"
+                  class="w-full bg-transparent 
+                  border-none focus:border-none pt-0
+                  focus:ring-none focus:ring-none 
+                  focus:ring-transparent text-center text-xl
+                  number-input
+                  ">
+                  <div class="absolute top-0 right-0 text-white text-xs rounded-full h-8 w-8 flex items-center justify-center">
+                    <button 
+                      [ngClass]="{'text-red-700': isProficient('intelligence')}"
+                      class="rounded-full h-6 w-6  text-gray-500" (click)="setProficient('intelligence')">
+                      <i class="fa-solid fa-hand-fist text-xl "></i>
+                    </button>
+                  </div>
+            </div>
+            <div formGroupName="wisdom"
+              class="border border-black rounded w-24 h-24 
+              relative justify-center items-center">
+              <p class="w-full text-center mt-4 font-semibold p-2">Sabiduría</p>
+              <input type="number"
+                formControlName="value"
+                placeholder="___"
+                class="w-full bg-transparent 
+                border-none focus:border-none pt-0
+                focus:ring-none focus:ring-none 
+                focus:ring-transparent text-center text-xl
+                number-input
+                ">
+                <div class="absolute top-0 right-0 text-white text-xs rounded-full h-8 w-8 flex items-center justify-center">
+                  <button 
+                    [ngClass]="{'text-red-700': isProficient('wisdom')}"
+                    class="rounded-full h-6 w-6  text-gray-500" (click)="setProficient('wisdom')">
+                    <i class="fa-solid fa-hand-fist text-xl "></i>
+                  </button>
+                </div>
+            </div>
+            <div formGroupName="charisma"
+              class="border border-black rounded w-24 h-24 
+              relative justify-center items-center">
+              <p class="w-full mt-4 text-center font-semibold p-2">Carisma</p>
+              <input type="number"
+                formControlName="value"
+                placeholder="___"
+                class="w-full bg-transparent 
+                border-none focus:border-none pt-0
+                focus:ring-none focus:ring-none 
+                focus:ring-transparent text-center text-xl
+                number-input
+                ">
+                <div class="absolute top-0 right-0 text-white text-xs rounded-full h-8 w-8 flex items-center justify-center">
+                  <button 
+                    [ngClass]="{'text-red-700': isProficient('charisma')}"
+                    class="rounded-full h-6 w-6  text-gray-500" (click)="setProficient('charisma')">
+                    <i class="fa-solid fa-hand-fist text-xl "></i>
+                  </button>
+                </div>
+            </div>
+            </div>
+          </ng-container>
+
+        </form>
+        <div class="flex w-full justify-center">
+          <button 
+          (click)="onContinue()"
+          [disabled]="!stepThreeForm.valid"
+          [ngClass]="{
+            'bg-red-700': stepThreeForm.valid
+          }"
+          class=" rounded mt-5
+          px-5 py-2 bg-gray-500
+          text-center text-white 
+          border w-3/4
+          focus:outline-none" 
+          >
+            Siguiente
+          </button>
+        </div>
+  </div>
+</div>

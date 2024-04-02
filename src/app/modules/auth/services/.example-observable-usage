@@ -1,0 +1,35 @@
+// import { Injectable } from '@angular/core';
+// import { Token } from '@interfaces/core/token.interface';
+// import { RxjsObservableHandler } from 'src/shared/services/rxjs-observable-handler.service';
+
+// @Injectable({
+// 	providedIn: 'root',
+// })
+// export class UserAuthenticatorTokensObservableHandler extends RxjsObservableHandler<Token> {
+// 	private currentToken: string;
+// 	private currentRefreshToken: string;
+// 	private readonly tokensSection = 'user-tokens';
+
+// 	public run(tokens: Token): void {
+// 		this.checkSection(this.tokensSection);
+
+// 		this.currentToken = tokens.accessToken;
+// 		this.currentRefreshToken = tokens.refreshToken;
+
+// 		this.replaceSectionWithData(this.tokensSection, tokens);
+// 	}
+
+// 	public stop(): void {
+// 		this.currentRefreshToken = '';
+// 		this.currentToken = '';
+// 		this.cleanSection(this.tokensSection);
+// 	}
+
+// 	public getCurrentToken(): string {
+// 		return this.currentToken;
+// 	}
+
+// 	public getCurrentRefreshToken(): string {
+// 		return this.currentRefreshToken;
+// 	}
+// }

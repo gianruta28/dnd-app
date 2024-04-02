@@ -1,0 +1,75 @@
+
+<div class="mt-10 flex items-center justify-center bg-slate-50">
+  <div class="flex flex-col sm:w-96 w-80 justify-center px-6 py-12 lg:px-8 rounded shadow-lg bg-white">
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+      <img class="mx-auto h-24 w-auto" src="assets/img/dnd-logo.png" alt="Your Company">
+      <h2 class="mt-5 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Register</h2>
+    </div>
+  
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+      <form [formGroup]="registerForm">
+        <div>
+          <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
+          <div class="mt-2">
+            <input id="name" name="name" formControlName="name" type="text" class="block w-full rounded-md border-0 ps-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-red-700 sm:text-sm sm:leading-6">
+          </div>
+        </div>
+        <div class="mt-5">
+          <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
+          <div class="mt-2">
+            <input id="email" name="email" formControlName="email" type="email" class="block w-full rounded-md border-0 ps-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-red-700 sm:text-sm sm:leading-6">
+          </div>
+        </div>
+        <div class="mt-5 flex gap-x-5">
+          <label class="inline-flex items-center mt-3">
+            <input type="radio"  formControlName="role" value="player" class="form-radio h-5 w-5 text-red-700">
+            <span class="ml-2 text-gray-700">Player</span>
+          </label>
+          <label class="inline-flex items-center mt-3">
+            <input type="radio" formControlName="role" value="dm" class="form-radio h-5 w-5 text-red-700"><span class="ml-2 text-gray-700">DM</span>
+          </label>
+        </div>
+  
+        <div class="mt-5">
+          <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
+          <div class="mt-2">
+            <input id="password" name="password" formControlName="password" type="password" autocomplete="current-password" required class="block ps-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-red-700 sm:text-sm sm:leading-6">
+          </div>
+        </div>
+        <div class="mt-5">
+          <label for="repeatPassword" class="block text-sm font-medium leading-6 text-gray-900">Repeat password</label>
+          <div class="mt-2">
+            <input id="repeatPassword" name="repeatPassword" formControlName="repeatPassword" type="password" required class="block w-full ps-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-red-700 sm:text-sm sm:leading-6">
+          </div>
+          @if(passwordMismatchError){
+            <p class="text-base text-red-600">Passwords do not match</p>
+          }
+        </div>
+  
+        <div class="mt-10">
+          <button 
+            type="submit"
+            (click)="submitForm()"
+            [disabled]="!this.registerForm.valid" 
+            [ngClass]="{'bg-red-700': this.registerForm.valid}"
+            class="flex w-full justify-center rounded-md 
+                  bg-gray-500 px-3 py-1.5 text-sm font-semibold 
+                  leading-6 text-white shadow-sm
+                  focus-visible:outline focus-visible:outline-2 
+                  focus-visible:outline-offset-2"
+          >
+            Register
+          </button>
+        </div>
+      </form>
+  
+      <p class="mt-10 text-center text-sm text-gray-500">
+        Already have an account?
+        <a [routerLink]="['/auth/login']" class="font-semibold leading-6 text-red-700 hover:text-red-500">Log in here</a>
+      </p>
+    </div>
+  </div>
+</div>
+@if(loadingSignal() || loginLoadingSignal()){
+  <app-loading [loadingStatus]="true"></app-loading>
+}

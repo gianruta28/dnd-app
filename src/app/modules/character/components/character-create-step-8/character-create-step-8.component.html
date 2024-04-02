@@ -1,0 +1,84 @@
+<div class="w-full max-w-md m-auto">
+  <button 
+    [ngClass]="{
+      'rounded-t': $stepOpened() === characterCreationStep.STEP_8,
+      'rounded': $stepOpened() !== characterCreationStep.STEP_8,
+      'bg-red-700': stepCompleted() >= 7
+    }
+    "
+    class="
+    accordion w-full 
+    px-5 py-2 bg-gray-500
+    text-left text-white 
+    focus:outline-none" 
+    (click)="stepCompleted() >= 7 && toggle()">
+    Paso 8: Rasgos y Atributos
+  </button>
+  <div [ngClass]="{'block': $stepOpened() === characterCreationStep.STEP_8, 'hidden': $stepOpened() !== characterCreationStep.STEP_8 }" 
+        class="content px-5 pt-2 pb-5 border rounded-b border-red-600">
+    <form [formGroup]="stepForm">
+      <div class="flex flex-col gap-y-2">
+        <div class="flex flex-col items-center">
+          <p class="text-xs">Añade tus Rasgos y Atributos</p>
+        </div>
+        <button 
+          (click)="addTrait()"
+          class="self-end rounded-full 
+          border bg-red-700 border-red-700 
+          w-6 h-6 flex items-center justify-center 
+          text-white">
+          <i class="fa-solid fa-plus "></i>
+        </button>
+        <div class="flex flex-col gap-y-3" formArrayName="traits">
+          <div [formGroupName]="idx"
+            class="flex flex-col w-full border border-red-700 rounded p-2" 
+            *ngFor="let traitControl of traitsArray.controls; let idx = index">
+           <div class="w-full" >
+            <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Nombre</label>
+            <div class="mt-2 flex items-center gap-x-1">
+              <input name="name" type="text" formControlName="name"
+              class="block ps-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm 
+              ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset 
+              focus:ring-red-700 sm:text-sm sm:leading-6">
+            <button
+              (click)="removeTrait(idx)"
+              class="rounded-full 
+              border bg-white border-red-700 
+              w-6 h-5 flex items-center justify-center 
+              text-red-700">
+              <i class="fa-solid fa-xmark "></i>
+            </button>
+            </div>
+           </div>
+           <div class="w-full">
+            <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Descripción</label>
+            <div class="mt-2">
+              <textarea name="name"  type="text" formControlName="description"
+              class="block ps-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm  h-24
+              ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset 
+              focus:ring-red-700 sm:text-sm sm:leading-6"> </textarea>
+            </div>
+           </div>
+
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="flex w-full justify-center">
+      <button 
+      [disabled]="!stepForm.valid"
+      (click)="onContinue()"
+      [ngClass]="{
+        'bg-red-700': stepForm.valid
+      }"
+      class=" rounded mt-5
+      px-5 py-2 bg-gray-500
+      text-center text-white 
+      border w-full
+      focus:outline-none" 
+      >
+        Siguiente
+      </button>
+    </div>
+  </div>
+</div>

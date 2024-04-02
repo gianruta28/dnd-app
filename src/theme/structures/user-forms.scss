@@ -1,0 +1,27 @@
+.user-forms {
+  --slide-size-width: 287px;
+
+  display: grid;
+  place-items: center;
+
+  &__slider {
+    width: var(--slide-size-width) !important;
+  }
+}
+
+swiper-container::part(container) {
+  overflow-y: visible;
+}
+
+.user-form {
+  background: var(--surface-e);
+  border-radius: 15px;
+  padding: 3rem 2rem;
+  width: fit-content;
+
+  &__form {
+    display: grid;
+    position: relative;
+    row-gap: 2rem;
+  }
+}

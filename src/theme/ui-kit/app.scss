@@ -1,0 +1,11 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+
+  &__router {
+    flex-grow: 1;
+    padding: 1rem;
+  }
+}

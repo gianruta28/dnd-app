@@ -1,0 +1,102 @@
+<div class="w-full max-w-md m-auto">
+  <button 
+    [ngClass]="{
+      'rounded-t': $stepOpened() === characterCreationStep.STEP_6,
+      'rounded': $stepOpened() !== characterCreationStep.STEP_6,
+      'bg-red-700': stepCompleted() >= 5
+    }
+    "
+    class="
+    accordion w-full 
+    px-5 py-2 bg-gray-500
+    text-left text-white 
+    focus:outline-none" 
+    (click)="stepCompleted() >= 5 && toggle()">
+    Paso 6: Otras Competencias
+  </button>
+  <div [ngClass]="{'block': $stepOpened() === characterCreationStep.STEP_6, 'hidden': $stepOpened() !== characterCreationStep.STEP_6 }" 
+        class="content px-5 pt-2 pb-5 border rounded-b border-red-600">
+    <form [formGroup]="stepForm">
+      <div class="flex flex-col items-center gap-y-3">
+        <div class="flex flex-col items-center">
+          <p class="text-xs">Añade Categorías y luego sus competencias.</p>
+          <p class="text-xs">Ex. Armas -> Sencillas, Marciales</p>
+        </div>
+        <button 
+          (click)="addProficiency()"
+          class="self-end rounded-full 
+          border bg-red-700 border-red-700 
+          w-6 h-6 flex items-center justify-center 
+          text-white">
+          <i class="fa-solid fa-plus "></i>
+        </button>
+        <div class="flex flex-col gap-y-5 w-full items-center" formGroupName="proficiencies">
+          <div *ngFor="let proficiency of proficienciesArray.controls; let idx = index" 
+            class="flex flex-col border rounded-b border-red-600 p-3 w-3/4 justify-center " [formArrayName]="idx" >
+            <div class="flex gap-x-3 items-center px-1">
+              <input name="name" formControlName="name" type="text" 
+              placeholder="Ex. Armas"
+              class="block ps-2 w-3/4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm 
+              ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset 
+              focus:ring-red-700 sm:text-sm sm:leading-6">
+              <button
+                (click)="addProficiencyItem(idx)"
+                class="rounded-full 
+                border bg-red-700 border-red-700 
+                w-6 h-6 flex items-center justify-center 
+                text-white">
+                <i class="fa-solid fa-plus "></i>
+              </button>
+              <button
+                (click)="removeProficiency(idx)"
+                class="rounded-full 
+                border bg-white border-red-700 
+                w-6 h-6 flex items-center justify-center 
+                text-red-700">
+                <i class="fa-solid fa-xmark "></i>
+              </button>
+            </div>
+            <ng-container formGroupName="items">
+              <div class="flex mt-3 gap-x-3 items-center"
+                *ngFor="let item of getCOntrolsOnIndex(idx)?.controls; let itemIdx = index">
+                <input name="name" type="text" [formControlName]="itemIdx"
+                placeholder="Ex. Marciales"
+                class="block ps-2 w-3/4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm 
+                ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset 
+                focus:ring-red-700 sm:text-sm sm:leading-6">
+                <button
+                  (click)="removeProficiencyItem(idx, itemIdx)"
+                  class="rounded-full 
+                  border bg-white border-red-700 
+                  w-6 h-6 flex items-center justify-center 
+                  text-red-700">
+                  <i class="fa-solid fa-xmark "></i>
+                </button>
+              </div>
+            </ng-container>
+
+            
+          </div>
+          
+        </div>
+      </div>
+    </form>
+    <div class="flex w-full justify-center">
+      <button 
+      (click)="onContinue()"
+      [disabled]="!stepForm.valid"
+      [ngClass]="{
+        'bg-red-700': stepForm.valid
+      }"
+      class=" rounded mt-5
+      px-5 py-2 bg-gray-500
+      text-center text-white 
+      border w-full
+      focus:outline-none" 
+      >
+        Siguiente
+      </button>
+    </div>
+  </div>
+
+</div>

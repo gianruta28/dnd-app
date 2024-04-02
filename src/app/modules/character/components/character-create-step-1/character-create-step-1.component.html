@@ -1,0 +1,119 @@
+<div class="w-full max-w-md m-auto">
+  <button 
+    [ngClass]="{
+      'rounded-t': $stepOpened() === characterCreationStep.STEP_1,
+      'rounded': $stepOpened() !== characterCreationStep.STEP_1
+    }"
+    class="
+    accordion w-full 
+    px-5 py-2 bg-red-700 
+    text-left text-white 
+    border border-red-700 
+    focus:outline-none" 
+    (click)="toggle()">
+      Paso 1: Info Base
+  </button>
+  <div [ngClass]="{'block': $stepOpened() === characterCreationStep.STEP_1, 'hidden': $stepOpened() !== characterCreationStep.STEP_1 }" 
+        class="content px-5 pt-2 pb-5 border rounded-b border-red-600">
+    <form [formGroup]="stepOneForm">
+      <div class="mt-5">
+        <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Nombre</label>
+        <div class="mt-2">
+          <input name="name" formControlName="name" type="text" required 
+          class="block ps-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm 
+          ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset 
+          focus:ring-red-700 sm:text-sm sm:leading-6">
+        </div>
+      </div>
+      <div class="mt-5 flex gap-x-1">
+        <div class="w-full max-w-xs mx-auto">
+          <label for="race" class="block text-sm font-medium leading-6 text-gray-900">Raza</label>
+          <div class="relative">
+            <select class="block ps-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm 
+            ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset 
+            focus:ring-red-700 sm:text-sm sm:leading-6"
+            formControlName="race">
+              @for(race of racesOptions; track race.value){
+                <option [value]="race.value" >{{"races."+race.value | translate}}</option>
+              }
+            </select>
+
+          </div>
+        </div>
+        <div class="w-full max-w-xs mx-auto">
+          <label for="class" class="block text-sm font-medium leading-6 text-gray-900">Clase</label>
+          <div class="relative">
+            <select class="block ps-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm 
+            ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset 
+            focus:ring-red-700 sm:text-sm sm:leading-6"
+            formControlName="class">
+              @for(classes of classesOptions; track classes.value){
+                <option [value]="classes.value" >{{'classes.' + classes.value | translate}}</option>
+              }
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="mt-5 flex gap-x-1">
+        <div class="w-full max-w-xs mx-auto">
+          <label for="race" class="block text-sm font-medium leading-6 text-gray-900">Trasfondo</label>
+          <div class="relative">
+            <select class="block ps-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm 
+            ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset 
+            focus:ring-red-700 sm:text-sm sm:leading-6"
+            formControlName="background">
+              @for(background of backgroundOptions; track background.value){
+                <option [value]="background.value" >{{'backgrounds.' + background.value | translate}}</option>
+              }
+            </select>
+
+          </div>
+        </div>
+        <div class="w-full max-w-xs mx-auto">
+          <label for="class" class="block text-sm font-medium leading-6 text-gray-900">Alineación</label>
+          <div class="relative">
+            <select class="block ps-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm 
+            ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset 
+            focus:ring-red-700 sm:text-sm sm:leading-6"
+            formControlName="alignment">
+              @for(alignment of alignmentsOptions; track alignment.value){
+                <option [value]="alignment.value" >{{alignment.name}}</option>
+              }
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="mt-5 flex gap-x-1">
+        <div class="w-full max-w-xs">
+          <label for="level" class="block text-sm font-medium leading-6 text-gray-900">Nivel</label>
+          <input name="level" formControlName="level" type="number" min="0" required 
+          class="block ps-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm 
+          ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset 
+          focus:ring-red-700 sm:text-sm sm:leading-6">
+        </div>
+        <div class="w-full max-w-xs">
+          <label for="experience" class="block text-sm font-medium leading-6 text-gray-900">Experiencia</label>
+          <input name="experience" formControlName="experiencePoints" type="number" min="0" required 
+          class="block ps-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm 
+          ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset 
+          focus:ring-red-700 sm:text-sm sm:leading-6">
+        </div>
+      </div>
+      
+    </form>
+    <button 
+      [disabled]="!stepOneForm.valid"
+      (click)="onContinue()"
+      [ngClass]="{
+        'bg-red-700': stepOneForm.valid
+      }"
+      class="w-full rounded mt-5
+      px-5 py-2 bg-gray-500
+      text-center text-white 
+      border 
+      focus:outline-none" 
+      >
+        Siguiente
+    </button>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import 'ngx-toastr/toastr';
+// // 2. Abstracts and variables
+// @import 'abstracts/all';
+
+// // 3. All the basic UI-Kit
+@import 'ui-kit/all';
+
+// // 4. Structure pages
+// @import 'structures/all';
+
+

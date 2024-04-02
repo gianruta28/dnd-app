@@ -1,0 +1,68 @@
+<div class="w-full max-w-md m-auto">
+  <button 
+    [ngClass]="{
+      'rounded-t': $stepOpened() === characterCreationStep.STEP_9,
+      'rounded': $stepOpened() !== characterCreationStep.STEP_9,
+      'bg-red-700': stepCompleted() >= 8
+    }
+    "
+    class="
+    accordion w-full 
+    px-5 py-2 bg-gray-500
+    text-left text-white 
+    focus:outline-none" 
+    (click)="stepCompleted() >= 8 && toggle()">
+    Paso 9: Otros
+  </button>
+  <div [ngClass]="{'block': $stepOpened() === characterCreationStep.STEP_9, 'hidden': $stepOpened() !== characterCreationStep.STEP_9 }" 
+        class="content px-5 pt-2 pb-5 border rounded-b border-red-600">
+    <form [formGroup]="stepForm">
+      <div class="flex flex-col gap-y-5">
+        <div class="flex flex-col gap-y-2">
+          <label for="">Rasgos de Personalidad</label>
+          <textarea name="name"  type="text" formControlName="personalityTraits"
+          class="block ps-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm  h-18
+          ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset 
+          focus:ring-red-700 sm:text-sm sm:leading-6"> </textarea>
+        </div>
+        <div class="flex flex-col gap-y-2">
+          <label for="">Ideales</label>
+          <textarea name="name"  type="text" formControlName="ideals"
+          class="block ps-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm  h-18
+          ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset 
+          focus:ring-red-700 sm:text-sm sm:leading-6"> </textarea>
+        </div>
+        <div class="flex flex-col gap-y-2">
+          <label for="">Vinculos</label>
+          <textarea name="name"  type="text" formControlName="bonds"
+          class="block ps-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm  h-18
+          ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset 
+          focus:ring-red-700 sm:text-sm sm:leading-6"> </textarea>
+        </div>
+        <div class="flex flex-col gap-y-2">
+          <label for="">Defectos</label>
+          <textarea name="name"  type="text" formControlName="flaws"
+          class="block ps-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm  h-18
+          ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset 
+          focus:ring-red-700 sm:text-sm sm:leading-6"> </textarea>
+        </div>
+      </div>
+    </form>
+    <div class="flex w-full justify-center">
+      <button 
+      [disabled]="!stepForm.valid"
+      (click)="onContinue()"
+      [ngClass]="{
+        'bg-red-700': stepForm.valid
+      }"
+      class=" rounded mt-5
+      px-5 py-2 bg-gray-500
+      text-center text-white 
+      border w-full
+      focus:outline-none" 
+      >
+        Siguiente
+      </button>
+    </div>
+  </div>
+</div>

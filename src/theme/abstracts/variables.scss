@@ -1,0 +1,87 @@
+:root {
+  // Font sizes
+  --fs-xxxs: 1rem;
+  --fs-xxs: 1.1rem;
+  --fs-xs: 1.2rem;
+  --fs-sm: 1.4rem;
+  --fs-md: 1.6rem;
+  --fs-lg: 1.8rem;
+  --fs-xl: 2.1rem;
+  --fs-xxl: 2.6rem;
+  --fs-xxxl: 3.2rem;
+  --fs-xxxxl: 4.5rem;
+
+  // Font weights
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  // Font families
+  --ff-primary: 'Helvetica', sans-serif;
+
+
+  // Colors
+  --transparent: rgba(0, 0, 0, 0%);
+  --special-white: 254, 255, 254;
+
+  // Grayscale
+  --white: 255, 255, 255; // #fff
+  --gray-100: 248, 249, 250; // #f8f9fa
+  --gray-200: 233, 236, 239; // #e9ecef
+  --gray-300: 222, 226, 230; // #dee2e6
+  --gray-400: 206, 212, 218; // #ced4da
+  --gray-500: 173, 181, 189; // #adb5bd
+  --gray-600: 108, 117, 125; // #6c757d
+  --gray-700: 73, 80, 87; // #495057
+  --gray-800: 52, 58, 64; // #343a40
+  --gray-900: 33, 37, 41; // #212529
+  --black: 0, 0, 0; // #000
+
+  --purple: 65, 51, 122;
+  // Times
+  --slow: 500ms;
+  --normal: 250ms;
+  --fast: 150ms;
+
+  --skeleton-gradient: linear-gradient(
+      90deg,
+      #ccc 0px,
+      rgb(229 229 229 / 90%) 40px,
+      #ccc 80px
+    );
+
+  // Layers
+  --modal: 999;
+  --overtop: 99;
+  --top: 25;
+  --over: 1;
+  --back: -1;
+  --header-z: 100;
+
+  // Opacity
+  --invisible: 0;
+  --hidden: 0.2;
+  --medium: 0.5;
+  --smooth: 0.7;
+  --visible: 1;
+
+  // Specifics CSS vars
+  --header-height: 15rem;
+
+  // Blur Value
+  --blur-ratio: 0.5rem;
+
+  // To use rem as 10px;
+  font-size: 62.5%;
+}
+
+
+// Breakpoints
+$breakpoint-xs: 250px;
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+$breakpoint-xxl: 1440px;
+$breakpoint-xxxl: 1920px;

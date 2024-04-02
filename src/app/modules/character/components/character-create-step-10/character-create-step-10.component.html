@@ -1,0 +1,127 @@
+<div class="w-full max-w-md m-auto">
+  <button 
+    [ngClass]="{
+      'rounded-t': $stepOpened() === characterCreationStep.STEP_10,
+      'rounded': $stepOpened() !== characterCreationStep.STEP_10,
+      'bg-red-700': stepCompleted() >= 9
+    }
+    "
+    class="
+    accordion w-full 
+    px-5 py-2 bg-gray-500
+    text-left text-white 
+    focus:outline-none" 
+    (click)="stepCompleted() >= 9 && toggle()">
+    Paso 10: Espacios de hechizos
+  </button>
+  <div [ngClass]="{'block': $stepOpened() === characterCreationStep.STEP_10, 'hidden': $stepOpened() !== characterCreationStep.STEP_10 }" 
+        class="content px-5 pt-2 pb-5 border rounded-b border-red-600">
+    <form [formGroup]="stepForm">
+      <div class="flex flex-col gap-y-3">
+        <div class="flex justify-between gap-x-3">
+          <div class="flex flex-col">
+            <p class="mb-2 text-center">Nivel 1</p>
+            <div class="flex w-full items-center justify-evenly">
+              <input name="name" type="text" formControlName="level1"
+              class="block ps-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm 
+              ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset 
+              focus:ring-red-700 sm:text-sm sm:leading-6">
+          </div>
+          </div>
+          <div class="flex flex-col">
+            <p class="mb-2 text-center">Nivel 2</p>
+            <div class="flex w-full items-center justify-evenly">
+              <input name="name" type="text" formControlName="level2"
+              class="block ps-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm 
+              ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset 
+              focus:ring-red-700 sm:text-sm sm:leading-6">
+            </div>
+          </div>
+          <div class="flex flex-col">
+            <p class="mb-2 text-center">Nivel 3</p>
+            <div class="flex w-full items-center justify-evenly">
+              <input name="name" type="text" formControlName="level3"
+              class="block ps-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm 
+              ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset 
+              focus:ring-red-700 sm:text-sm sm:leading-6">
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-between gap-x-3">
+          <div class="flex flex-col">
+            <p class="mb-2 text-center">Nivel 4</p>
+            <div class="flex w-full items-center justify-evenly">
+              <input name="name" type="text" formControlName="level4"
+              class="block ps-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm 
+              ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset 
+              focus:ring-red-700 sm:text-sm sm:leading-6">
+          </div>
+          </div>
+          <div class="flex flex-col">
+            <p class="mb-2 text-center">Nivel 5</p>
+            <div class="flex w-full items-center justify-evenly">
+              <input name="name" type="text" formControlName="level5"
+              class="block ps-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm 
+              ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset 
+              focus:ring-red-700 sm:text-sm sm:leading-6">
+            </div>
+          </div>
+          <div class="flex flex-col">
+            <p class="mb-2 text-center">Nivel 6</p>
+            <div class="flex w-full items-center justify-evenly">
+              <input name="name" type="text" formControlName="level6"
+              class="block ps-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm 
+              ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset 
+              focus:ring-red-700 sm:text-sm sm:leading-6">
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-between gap-x-3">
+          <div class="flex flex-col">
+            <p class="mb-2 text-center">Nivel 7</p>
+            <div class="flex w-full items-center justify-evenly">
+              <input name="name" type="text" formControlName="level7"
+              class="block ps-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm 
+              ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset 
+              focus:ring-red-700 sm:text-sm sm:leading-6">
+          </div>
+          </div>
+          <div class="flex flex-col">
+            <p class="mb-2 text-center">Nivel 8</p>
+            <div class="flex w-full items-center justify-evenly">
+              <input name="name" type="text" formControlName="level8"
+              class="block ps-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm 
+              ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset 
+              focus:ring-red-700 sm:text-sm sm:leading-6">
+            </div>
+          </div>
+          <div class="flex flex-col">
+            <p class="mb-2 text-center">Nivel 9</p>
+            <div class="flex w-full items-center justify-evenly">
+              <input name="name" type="text" formControlName="level9"
+              class="block ps-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm 
+              ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset 
+              focus:ring-red-700 sm:text-sm sm:leading-6">
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="flex w-full justify-center">
+      <button 
+      [disabled]="!stepForm.valid"
+      (click)="onContinue()"
+      [ngClass]="{
+        'bg-red-700': stepForm.valid
+      }"
+      class=" rounded mt-5
+      px-5 py-2 bg-gray-500
+      text-center text-white 
+      border w-full
+      focus:outline-none" 
+      >
+        Terminar
+      </button>
+    </div>
+  </div>
+</div>

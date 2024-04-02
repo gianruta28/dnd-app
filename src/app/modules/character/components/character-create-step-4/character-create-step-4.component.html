@@ -1,0 +1,58 @@
+<div class="w-full max-w-md m-auto">
+  <button 
+    [ngClass]="{
+      'rounded-t': $stepOpened() === characterCreationStep.STEP_4,
+      'rounded': $stepOpened() !== characterCreationStep.STEP_4,
+      'bg-red-700': stepCompleted() >= 3
+    }
+    "
+    class="
+    accordion w-full 
+    px-5 py-2 bg-gray-500
+    text-left text-white 
+    focus:outline-none" 
+    (click)="stepCompleted() >= 3 && toggle()">
+    Paso 4: Habilidades
+  </button>
+  <div [ngClass]="{'block': $stepOpened() === characterCreationStep.STEP_4, 'hidden': $stepOpened() !== characterCreationStep.STEP_4 }" 
+        class="content px-5 pt-2 pb-5 border rounded-b border-red-600">
+  
+    <form [formGroup]="stepForm">
+      <div class="grid grid-cols-2 gap-x-2 gap-y-3">
+        @for(skill of skills; track skill){
+          <div class="flex flex-col items-center" formGroupName="{{skill}}">
+            <p class="text-center mb-2" translate>{{'skills.' + skill}}</p>
+            <div class="flex w-full items-center justify-evenly">
+              <input name="name" type="text" formControlName="bonus" 
+              class="block ps-2 w-3/4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm 
+              ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset 
+              focus:ring-red-700 sm:text-sm sm:leading-6">
+            <button 
+              [ngClass]="{'text-red-700': isProficient(skill)}"
+              class="rounded-full h-6 w-6  text-gray-500" 
+              (click)="setProficient(skill)">
+              <i class="fa-solid fa-hand-fist text-xl "></i>
+            </button>
+          </div>
+          </div>
+        }
+      </div>
+    </form>
+    <div class="flex w-full justify-center">
+      <button 
+      (click)="onContinue()"
+      [disabled]="!stepForm.valid"
+      [ngClass]="{
+        'bg-red-700': stepForm.valid
+      }"
+      class=" rounded mt-5
+      px-5 py-2 bg-gray-500
+      text-center text-white 
+      border w-full
+      focus:outline-none" 
+      >
+        Siguiente
+      </button>
+    </div>
+  </div>
+</div>

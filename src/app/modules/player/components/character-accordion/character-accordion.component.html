@@ -1,0 +1,20 @@
+<div 
+    class="
+
+    flex items-center justify-center flex-col
+    px-5 py-3
+    w-full rounded
+    border-2 border-{{character.class}}
+    min-h-12
+    ">
+    <div class="flex justify-between items-center w-full ">
+      <p class="text-lg">{{character.name}}</p>
+      <i [ngClass]="{'fa-arrow-up': expanded}"
+        class="fa-solid fa-arrow-down" 
+        (click)="expand()">
+      </i>
+    </div>
+    @if(expanded){
+      <app-character-info [character]="character"></app-character-info>
+    }
+  </div>

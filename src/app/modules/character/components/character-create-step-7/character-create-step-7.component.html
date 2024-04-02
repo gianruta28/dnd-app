@@ -1,0 +1,73 @@
+<div class="w-full max-w-md m-auto">
+  <button 
+    [ngClass]="{
+      'rounded-t': $stepOpened() === characterCreationStep.STEP_7,
+      'rounded': $stepOpened() !== characterCreationStep.STEP_7,
+      'bg-red-700': stepCompleted() >= 6
+    }
+    "
+    class="
+    accordion w-full 
+    px-5 py-2 bg-gray-500
+    text-left text-white 
+    focus:outline-none" 
+    (click)="stepCompleted() >= 6 && toggle()">
+    Paso 7: Idiomas
+  </button>
+  <div [ngClass]="{'block': $stepOpened() === characterCreationStep.STEP_7, 'hidden': $stepOpened() !== characterCreationStep.STEP_7 }" 
+        class="content px-5 pt-2 pb-5 border rounded-b border-red-600">
+    <form [formGroup]="stepForm">
+      <div class="flex flex-col items-center">
+        <div class="flex flex-col items-center">
+          <p class="text-xs">Añade tus Idiomas.</p>
+          <p class="text-xs">Ex. Enano, Elfico</p>
+        </div>
+        <button 
+            (click)="addLanguage()"
+            class="self-end rounded-full 
+            border bg-red-700 border-red-700 
+            w-6 h-6 flex items-center justify-center 
+            text-white">
+            <i class="fa-solid fa-plus "></i>
+        </button>
+        <div class="flex flex-col gap-y-3">
+          <ng-container formGroupName="languages">
+            <div *ngFor="let languageControl of languagesArray.controls; let idx = index"
+              class="flex gap-x-3 w-full items-center">
+              <input name="name" type="text" 
+                formControlName="{{idx}}"
+                placeholder="Ex. Élfico"
+                class="block ps-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm 
+                ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset 
+                focus:ring-red-700 sm:text-sm sm:leading-6">
+                <button
+                (click)="removeLanguage(idx)"
+                class="rounded-full 
+                border bg-white border-red-700 
+                w-6 h-5 flex items-center justify-center 
+                text-red-700">
+                <i class="fa-solid fa-xmark "></i>
+              </button>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </form>
+    <div class="flex w-full justify-center">
+      <button 
+      (click)="onContinue()"
+      [disabled]="!stepForm.valid"
+      [ngClass]="{
+        'bg-red-700': stepForm.valid
+      }"
+      class=" rounded mt-5
+      px-5 py-2 bg-gray-500
+      text-center text-white 
+      border w-full
+      focus:outline-none" 
+      >
+        Siguiente
+      </button>
+    </div>
+  </div>
+</div>

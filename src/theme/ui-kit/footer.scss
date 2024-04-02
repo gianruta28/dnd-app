@@ -1,0 +1,28 @@
+.footer {
+  background-color: #0e0e0e;
+  column-gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px;
+
+  &__logos {
+    align-items: center;
+    column-gap: 20px;
+    display: grid;
+    grid-template-columns: 150px;
+    row-gap: 20px;
+
+    @include mobile-landscape {
+      grid-template-columns: repeat(2, 150px);
+    }
+
+    @include tablet-portrait {
+      grid-template-columns: repeat(3, 150px);
+    }
+  }
+
+  &__logo {
+    width: 150px;
+  }
+}

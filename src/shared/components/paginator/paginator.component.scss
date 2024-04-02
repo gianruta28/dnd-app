@@ -1,0 +1,47 @@
+.paginator {
+  display: flex;
+  justify-content: center;
+  &__container {
+    color: white;
+    display: flex;
+    align-items: center;
+  }
+  &__button{
+    min-width: 10rem;
+    height: 3.5rem;
+    cursor: pointer;
+    margin: 0 1rem;
+    border-radius: 6px;
+    background: rgb(var(--purple));
+    max-width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0 6px;
+    @media (hover: hover) {
+      &:hover {
+        background: lighten(#202020, 3%);
+      }
+    }
+    &:active {
+        background: lighten(#202020, 3%);
+    }
+  }
+  &__arrow-text {
+    display: block;
+    vertical-align: middle;
+    font-size: 13px;
+    margin: 0 0.5rem;
+  }
+}
+.hide {
+  display: none;
+  visibility: hidden;
+  height: 0;
+}
+
+.pagination\:active {
+  background: lighten(#202020, 3%);
+  position: relative;
+}

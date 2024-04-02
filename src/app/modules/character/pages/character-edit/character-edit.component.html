@@ -1,0 +1,82 @@
+<app-navigation [title]="'Nuevo Personaje'"></app-navigation>
+<div class="flex p-3 gap-y-5 justify-center flex-col mt-5">
+
+  @if($characterLoading()){
+    <app-loading [loadingStatus]="true" [noFullScreen]="true"></app-loading>
+  }
+  @else {
+    <div class="w-full flex text-center">
+      <button (click)="returnNavigation()">
+        <i class="fa-solid fa-arrow-left text-lg"></i>
+      </button>
+      <p class="text-xl w-full">Edita a {{$character().name}}</p>
+    </div>
+  
+    <app-character-create-step-1
+      [character]="$character()"
+      (nextStep)="onStep1Completed($event)">
+    </app-character-create-step-1>
+    <app-character-create-step-2
+    [character]="$character()"
+    (nextStep)="onStep2Completed($event)"
+    ></app-character-create-step-2>
+    <app-character-create-step-3
+      [statsInfo]="newCharacter.attributes"
+      [character]="$character()"
+      (nextStep)="onStep3Completed($event)"
+    ></app-character-create-step-3>
+    <app-character-create-step-4
+      [savingThrows]="$character().savingThrows ?? newCharacter.savingThrows"
+      [characterSkills]="$character().skills"
+      (nextStep)="onStep4Completed($event)"
+    ></app-character-create-step-4>
+    <app-character-create-step-5
+      [hitDice]="$character().hitDice"
+      [hitPoints]="$character().hitPoints"
+      [constitutionBonus]="$character().savingThrows?.constitution?.value"
+      (nextStep)="onStep5Completed($event)">
+    </app-character-create-step-5>
+    <app-character-create-step-6
+      [otherProficiencies]="$character().proficiencies"
+      (nextStep)="onStep6Completed($event)"
+    ></app-character-create-step-6>
+    <app-character-create-step-7
+    [languages]="$character().languages"
+    (nextStep)="onStep7Completed($event)"
+    ></app-character-create-step-7>
+    <app-character-create-step-8
+    [traits]="$character().traits"
+    (nextStep)="onStep8Completed($event)">
+    </app-character-create-step-8>
+    <app-character-create-step-9
+    [otherInfo]="{
+      flaws: $character().flaws,
+      bonds: $character().bonds,
+      personalityTraits: $character().personalityTraits,
+      ideals: $character().ideals,
+    }"
+    (nextStep)="onStep9Completed($event)">
+    </app-character-create-step-9>
+    <app-character-create-step-10
+    [spellSlots]="$character().spellSlots"
+    (nextStep)="onStep10Completed($event)"
+    ></app-character-create-step-10>
+    <div class="flex w-full justify-center">
+      <button 
+      (click)="save()"
+      class=" rounded mt-5
+      px-5 py-2 border border-red-700
+      text-center text-red-700
+      border w-full
+      focus:outline-none" 
+      >
+        Terminar
+      </button>
+    </div>
+  }
+
+
+</div>
+<!-- @if($characterCreationLoading()){
+  <app-loading [loadingStatus]="true"></app-loading>
+} -->

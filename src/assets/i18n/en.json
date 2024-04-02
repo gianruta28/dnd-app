@@ -1,0 +1,52 @@
+{
+  "auth": {
+    "login": "Loginaaa"
+  },
+  "skiils": {
+    "investigation": "Investigaci'on",
+    "acrobatics": "Acrobacias",
+    "animal": "T. con Animales",
+    "arcana": "C. Arcano",
+    "athletics": "Atletismo",
+    "deception": "Engaño",
+    "history": "Historia",
+    "insight": "Perspicacia",
+    "intimidation": "Intimidación",
+    "medicine": "Medicina",
+    "nature": "Naturaleza",
+    "perception": "Percepción",
+    "performance": "Interpretación",
+    "persuasion": "Persuación",
+    "religion": "Religion",
+    "sleightOfHand": "Juego de Manos",
+    "stealth": "Sigilo",
+    "survival": "Sobrevivencia"
+  },
+  "races": {
+    "dragonborn": "Dragonborn",
+    "human": "Human",
+    "dwarf": "Dwarf",
+    "eladrin": "Eladrin",
+    "elf": "Elf",
+    "gnome": "Gnome",
+    "half-elf": "Half-elf",
+    "half-orc": "Half-orc",
+    "halfling": "Halfling",
+    "tiefling": "Tiefling"
+  },
+  "backgrounds": {
+    "acolyte": "Acolyte",
+    "charlatan": "Charlatan",
+    "criminal": "Criminal",
+    "entertainer": "Entertainer",
+    "folk-hero": "Folk Hero",
+    "guild-artisan": "Guild Artisan",
+    "hermit": "Hermit",
+    "noble": "Noble",
+    "outlander": "Outlander",
+    "sage": "Sage",
+    "soldier": "Soldier",
+    "urchin": "Urchin",
+    "sailor": "Sailor"
+  }
+}

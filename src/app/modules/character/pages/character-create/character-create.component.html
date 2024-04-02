@@ -1,0 +1,50 @@
+<app-navigation [title]="'Nuevo Personaje'"></app-navigation>
+<div class="flex p-3 gap-y-5 justify-center flex-col mt-5">
+
+  <div class="w-full flex text-center">
+    <button (click)="returnNavigation()">
+      <i class="fa-solid fa-arrow-left text-lg"></i>
+    </button>
+    <p class="text-xl w-full">Crea tu personaje</p>
+  </div>
+
+  <app-character-create-step-1
+    (nextStep)="onStep1Completed($event)">
+  </app-character-create-step-1>
+  <app-character-create-step-2
+  (nextStep)="onStep2Completed($event)"
+  ></app-character-create-step-2>
+  <app-character-create-step-3
+    [statsInfo]="newCharacter.attributes"
+    (nextStep)="onStep3Completed($event)"
+  ></app-character-create-step-3>
+  <app-character-create-step-4
+    [savingThrows]="newCharacter.savingThrows"
+    (nextStep)="onStep4Completed($event)"
+  ></app-character-create-step-4>
+  <app-character-create-step-5
+    [constitutionBonus]="newCharacter.savingThrows?.constitution?.value"
+    (nextStep)="onStep5Completed($event)">
+  </app-character-create-step-5>
+  <app-character-create-step-6
+    (nextStep)="onStep6Completed($event)"
+  ></app-character-create-step-6>
+  <app-character-create-step-7
+  (nextStep)="onStep7Completed($event)"
+  ></app-character-create-step-7>
+  <app-character-create-step-8
+  (nextStep)="onStep8Completed($event)">
+  </app-character-create-step-8>
+  <app-character-create-step-9
+  (nextStep)="onStep9Completed($event)">
+
+  </app-character-create-step-9>
+  <app-character-create-step-10
+  (nextStep)="onStep10Completed($event)"
+  ></app-character-create-step-10>
+
+
+</div>
+@if($characterCreationLoading()){
+  <app-loading [loadingStatus]="true"></app-loading>
+}
