@@ -1,16 +1,12 @@
-interface ImportMeta {
-  readonly env: ImportMetaEnv;
+declare interface Env {
+	readonly NODE_ENV: string;
+	// Replace the following with your own environment variables, for example:
+	// readonly NG_APP_VERSION: string;
+	[key: string]: any;
 }
 
-interface ImportMetaEnv {
-  /**
-   * Built-in environment variable.
-   * @see Docs https://github.com/chihab/dotenv-run/packages/angular#node_env.
-   */
-  readonly NODE_ENV: string;
-  // Add your environment variables below
-  // readonly NG_APP_API_URL: string;
-  [key: string]: any;
+declare interface ImportMeta {
+	readonly env: Env;
 }
 
 /*
