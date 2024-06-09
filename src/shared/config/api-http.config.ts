@@ -6,7 +6,10 @@ const { apiKey } = environment;
 export class ApiHttpConfig {
 	static createWithApiKey(): HttpClientOptions {
 		return {
-			headers: { Authorization: `ApiKey ${apiKey}` },
+			headers: {
+				Authorization: `ApiKey ${apiKey}`,
+				'Access-Control-Allow-Origin': '*',
+			},
 		};
 	}
 
