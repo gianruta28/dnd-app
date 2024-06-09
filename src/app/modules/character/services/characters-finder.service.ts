@@ -27,13 +27,10 @@ export class CharactersFinder {
 				this.charactersFinderSignalHandler.setCharactersLoaded(sections.findAll);
 
 				if (!value?.body) {
-					console.log('aqui?');
-
 					this.charactersFinderSignalHandler.setCharacters(sections.findAll, []);
 
 					return;
 				}
-				console.log(value.body);
 
 				this.charactersFinderSignalHandler.setCharacters(sections.findAll, value.body.data);
 			},

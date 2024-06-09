@@ -1,0 +1,36 @@
+<div class="flex flex-col justify-center w-auto h-auto gap-y-3 rounded py-3">
+  <div class="w-full text-center">
+    <p class="text-lg">Tiradas de muerte</p>
+  </div>
+  <div class="flex w-full">
+
+    <div class="flex flex-col w-full gap-y-2 items-center">
+      <p>Exitos</p>
+      <div class="flex justify-center gap-x-2">
+        @for(success of [].constructor(maxCount); track success){
+          <button [ngClass]="{'bg-green-700': $index < deathSaves.success}"
+            (click)="updateSuccessCount($index)"
+            class="w-7 h-7 border border-1 rounded-md text-center">
+            @if($index < deathSaves.success){
+              <i class="fa-solid text-white fa-check"></i>
+            }
+          </button>
+        }
+      </div>
+    </div>
+    <div class="flex flex-col w-full gap-y-2 items-center">
+      <p>Fallos</p>
+      <div class="flex justify-center gap-x-2">
+        @for(failure of [].constructor(maxCount); track failure){
+          <button [ngClass]="{'bg-red-700': $index < deathSaves.failures}"
+            (click)="updateFailsCount($index)"
+            class="w-7 h-7 border border-1 rounded-md text-center">
+            @if($index < deathSaves.failures){
+              <i class="fa-solid text-white fa-xmark"></i>
+            }
+          </button>
+        }
+      </div>
+    </div>
+  </div>
+</div>

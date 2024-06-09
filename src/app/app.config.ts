@@ -2,6 +2,7 @@ import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { ApplicationConfig } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
+import { provideIonicAngular } from '@ionic/angular/standalone';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { UserGuard } from '@shared/guards/user.guard';
@@ -24,6 +25,7 @@ export const appConfig: ApplicationConfig = {
 		provideHttpClient(),
 		provideAnimations(),
 		provideToastr(),
+		provideIonicAngular(),
 		RefreshTokenFetcher,
 		TokenLoader,
 		TokenSignalHandler,

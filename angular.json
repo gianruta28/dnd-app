@@ -32,7 +32,8 @@
             "styles": [
               "node_modules/ngx-toastr/toastr.css",
               "src/theme/main.scss",
-              "src/theme/font-awesome/all.css"
+              "src/theme/font-awesome/all.css",
+              "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
             ],
             "scripts": []
           },

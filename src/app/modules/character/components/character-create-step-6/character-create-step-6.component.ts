@@ -104,10 +104,12 @@ export class CharacterCreateStep6Component implements OnInit {
 
 	public onContinue(): void {
 		this.nextStep.emit(this.stepForm.value.proficiencies as Proficiency[]);
-		this.characterCreationStepsSignalHandler.setStepOpened(
-			config.sections.stepCompleted,
-			CharacterCreationSteps.STEP_6,
-		);
+		if (!this.otherProficiencies) {
+			this.characterCreationStepsSignalHandler.setStepOpened(
+				config.sections.stepCompleted,
+				CharacterCreationSteps.STEP_6,
+			);
+		}
 		this.characterCreationStepsSignalHandler.setStepOpened(
 			config.sections.steps,
 			CharacterCreationSteps.STEP_7,

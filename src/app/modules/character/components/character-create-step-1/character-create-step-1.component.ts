@@ -54,7 +54,6 @@ export class CharacterCreateStep1Component implements OnInit {
 		this.characterCreationStepsSignalHandler.getStepOpened(config.sections.steps);
 
 	ngOnInit(): void {
-
 		this.createForm();
 	}
 

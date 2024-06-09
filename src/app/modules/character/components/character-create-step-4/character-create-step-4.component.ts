@@ -13,7 +13,7 @@ import {
 	WritableSignal,
 } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { SavingThrows, Skills } from '@interfaces/character/character.interface';
+import { Attributes, SavingThrows, Skills } from '@interfaces/character/character.interface';
 import { CharacterCreationSteps } from '@interfaces/character/character-creation-steps.enum';
 import { SkillStat } from '@interfaces/character/skill-stats.enum';
 import { TranslateModule } from '@ngx-translate/core';
@@ -47,6 +47,8 @@ const config = CharacterConfig.actions.create;
 })
 export class CharacterCreateStep4Component implements OnInit, OnChanges {
 	@Input() savingThrows: SavingThrows | undefined;
+	@Input() characterStats: Attributes | undefined;
+	@Input() proficiencyBonus: number | undefined;
 	@Input() characterSkills?: Skills;
 	@Output() nextStep: EventEmitter<Skills> = new EventEmitter();
 
@@ -67,22 +69,30 @@ export class CharacterCreateStep4Component implements OnInit, OnChanges {
 	});
 
 	ngOnChanges(changes: SimpleChanges): void {
-		if (!changes.savingThrows) {
-			return;
+		// if (!changes.characterStats && !changes.proficiencyBonus) {
+		// 	return;
+		// }
+
+		if (changes.characterStats && !changes.characterStats.firstChange) {
+			this.characterStats = changes.characterStats.currentValue;
+		}
+		if (changes.proficiencyBonus && !changes.proficiencyBonus.firstChange) {
+			this.proficiencyBonus = changes.proficiencyBonus.currentValue;
 		}
 
-		this.stepForm = this.skillsFormBuilder.run(
-			changes.savingThrows.currentValue,
-			this.characterSkills,
-		);
-
-		if (changes.savingThrows.firstChange) {
-			return;
+		if (this.characterStats && this.proficiencyBonus) {
+			this.stepForm = this.skillsFormBuilder.run(
+				this.characterStats,
+				this.characterSkills,
+				this.proficiencyBonus ?? 0,
+			);
 		}
 	}
 
 	ngOnInit(): void {
+
 		this.createForm();
+
 		this.skills = Object.keys(SkillStat);
 	}
 
@@ -106,16 +116,30 @@ export class CharacterCreateStep4Component implements OnInit, OnChanges {
 	}
 
 	public setProficient(key: string): void {
-		const control = this.stepForm.get(key)?.get('proficient');
-		control?.patchValue(!control.value);
+		const proficiencyControl = this.stepForm.get(key)?.get('proficient');
+		const valueControl = this.stepForm.get(key)?.get('bonus');
+		proficiencyControl?.patchValue(!proficiencyControl.value);
+
+		if (proficiencyControl?.value) {
+			valueControl?.patchValue(Number(valueControl.value) + Number(this.proficiencyBonus));
+
+			return;
+		}
+		if (!proficiencyControl?.value) {
+			valueControl?.patchValue(Number(valueControl.value) - Number(this.proficiencyBonus));
+
+			return;
+		}
 	}
 
 	public onContinue(): void {
 		this.nextStep.emit(this.stepForm.value as Skills);
-		this.characterCreationStepsSignalHandler.setStepOpened(
-			config.sections.stepCompleted,
-			CharacterCreationSteps.STEP_4,
-		);
+		if (!this.characterSkills) {
+			this.characterCreationStepsSignalHandler.setStepOpened(
+				config.sections.stepCompleted,
+				CharacterCreationSteps.STEP_4,
+			);
+		}
 		this.characterCreationStepsSignalHandler.setStepOpened(
 			config.sections.steps,
 			CharacterCreationSteps.STEP_5,
@@ -123,6 +147,11 @@ export class CharacterCreateStep4Component implements OnInit, OnChanges {
 	}
 
 	private createForm() {
-		this.stepForm = this.skillsFormBuilder.run(this.savingThrows, this.characterSkills);
+
+		this.stepForm = this.skillsFormBuilder.run(
+			this.characterStats,
+			this.characterSkills,
+			this.proficiencyBonus,
+		);
 	}
 }

@@ -19,7 +19,9 @@
     (nextStep)="onStep3Completed($event)"
   ></app-character-create-step-3>
   <app-character-create-step-4
-    [savingThrows]="newCharacter.savingThrows"
+    [characterStats]="newCharacter.attributes"
+    [characterSkills]="newCharacter.skills"
+    [proficiencyBonus]="newCharacter.proficiencyBonus"
     (nextStep)="onStep4Completed($event)"
   ></app-character-create-step-4>
   <app-character-create-step-5

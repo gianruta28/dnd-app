@@ -1,37 +1,108 @@
 import { inject, Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SavingThrows, Skill, Skills } from '@interfaces/character/character.interface';
+import { Attributes, Skill, Skills } from '@interfaces/character/character.interface';
 
 @Injectable()
 export class SkillsFormBuilder {
 	formBuilder = inject(FormBuilder);
 
-	public run(savingThrows?: SavingThrows, skills?: Skills): FormGroup {
+	public run(attributes?: Attributes, skills?: Skills, proficiencyBonus?: number): FormGroup {
 		return this.formBuilder.group({
-			acrobatics: this.buildSkillGroup(savingThrows?.dexterity.value, skills?.acrobatics),
-			animal: this.buildSkillGroup(savingThrows?.wisdom.value, skills?.animal),
-			arcana: this.buildSkillGroup(savingThrows?.intelligence?.value, skills?.arcana),
-			athletics: this.buildSkillGroup(savingThrows?.strength?.value, skills?.athletics),
-			deception: this.buildSkillGroup(savingThrows?.charisma?.value, skills?.deception),
-			history: this.buildSkillGroup(savingThrows?.intelligence?.value, skills?.history),
-			insight: this.buildSkillGroup(savingThrows?.wisdom?.value, skills?.insight),
-			intimidation: this.buildSkillGroup(savingThrows?.charisma?.value, skills?.intimidation),
-			investigation: this.buildSkillGroup(savingThrows?.intelligence?.value, skills?.investigation),
-			medicine: this.buildSkillGroup(savingThrows?.wisdom?.value, skills?.medicine),
-			nature: this.buildSkillGroup(savingThrows?.intelligence?.value, skills?.nature),
-			perception: this.buildSkillGroup(savingThrows?.wisdom?.value, skills?.perception),
-			performance: this.buildSkillGroup(savingThrows?.charisma?.value, skills?.performance),
-			persuasion: this.buildSkillGroup(savingThrows?.charisma?.value, skills?.persuasion),
-			religion: this.buildSkillGroup(savingThrows?.intelligence?.value, skills?.religion),
-			sleightOfHand: this.buildSkillGroup(savingThrows?.dexterity?.value, skills?.sleightOfHand),
-			stealth: this.buildSkillGroup(savingThrows?.dexterity?.value, skills?.stealth),
-			survival: this.buildSkillGroup(savingThrows?.wisdom?.value, skills?.survival),
+			acrobatics: this.buildSkillGroup(
+				attributes?.dexterity.modifier,
+				skills?.acrobatics,
+				proficiencyBonus,
+			),
+			animal: this.buildSkillGroup(attributes?.wisdom.modifier, skills?.animal, proficiencyBonus),
+			arcana: this.buildSkillGroup(
+				attributes?.intelligence?.modifier,
+				skills?.arcana,
+				proficiencyBonus,
+			),
+			athletics: this.buildSkillGroup(
+				attributes?.strength?.modifier,
+				skills?.athletics,
+				proficiencyBonus,
+			),
+			deception: this.buildSkillGroup(
+				attributes?.charisma?.modifier,
+				skills?.deception,
+				proficiencyBonus,
+			),
+			history: this.buildSkillGroup(
+				attributes?.intelligence?.modifier,
+				skills?.history,
+				proficiencyBonus,
+			),
+			insight: this.buildSkillGroup(
+				attributes?.wisdom?.modifier,
+				skills?.insight,
+				proficiencyBonus,
+			),
+			intimidation: this.buildSkillGroup(
+				attributes?.charisma?.modifier,
+				skills?.intimidation,
+				proficiencyBonus,
+			),
+			investigation: this.buildSkillGroup(
+				attributes?.intelligence?.modifier,
+				skills?.investigation,
+				proficiencyBonus,
+			),
+			medicine: this.buildSkillGroup(
+				attributes?.wisdom?.modifier,
+				skills?.medicine,
+				proficiencyBonus,
+			),
+			nature: this.buildSkillGroup(
+				attributes?.intelligence?.modifier,
+				skills?.nature,
+				proficiencyBonus,
+			),
+			perception: this.buildSkillGroup(
+				attributes?.wisdom?.modifier,
+				skills?.perception,
+				proficiencyBonus,
+			),
+			performance: this.buildSkillGroup(
+				attributes?.charisma?.modifier,
+				skills?.performance,
+				proficiencyBonus,
+			),
+			persuasion: this.buildSkillGroup(
+				attributes?.charisma?.modifier,
+				skills?.persuasion,
+				proficiencyBonus,
+			),
+			religion: this.buildSkillGroup(
+				attributes?.intelligence?.modifier,
+				skills?.religion,
+				proficiencyBonus,
+			),
+			sleightOfHand: this.buildSkillGroup(
+				attributes?.dexterity?.modifier,
+				skills?.sleightOfHand,
+				proficiencyBonus,
+			),
+			stealth: this.buildSkillGroup(
+				attributes?.dexterity?.modifier,
+				skills?.stealth,
+				proficiencyBonus,
+			),
+			survival: this.buildSkillGroup(
+				attributes?.wisdom?.modifier,
+				skills?.survival,
+				proficiencyBonus,
+			),
 		});
 	}
 
-	private buildSkillGroup(bonus?: number, skill?: Skill) {
+	private buildSkillGroup(value?: number, skill?: Skill, proficiencyBonus?: number) {
+		const bonus = value ?? 0;
+		const proficiencyValue = proficiencyBonus ?? 0;
+
 		return this.formBuilder.group({
-			bonus: [bonus ?? 0, [Validators.required]],
+			bonus: [skill?.proficient ? bonus + proficiencyValue : bonus ?? 0, [Validators.required]],
 			proficient: [skill?.proficient ?? false, [Validators.required]],
 		});
 	}

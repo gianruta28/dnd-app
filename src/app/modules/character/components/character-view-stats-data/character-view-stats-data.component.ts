@@ -23,7 +23,7 @@ const config = CharacterConfig.actions.create;
 	styleUrl: './character-view-stats-data.component.scss',
 })
 export class CharacterViewStatsDataComponent implements OnInit, OnDestroy {
-	@Input() characterAttributes: Attributes;
+	@Input() characterAttributes: Attributes | undefined;
 	ngOnInit(): void {}
 
 	ngOnDestroy(): void {}

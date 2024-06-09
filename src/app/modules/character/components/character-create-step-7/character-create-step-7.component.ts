@@ -84,17 +84,18 @@ export class CharacterCreateStep7Component implements OnInit {
 	}
 
 	public onContinue(): void {
-		console.log(this.stepForm.value.languages);
 
 		this.nextStep.emit(this.stepForm.value.languages as string[]);
-		// this.characterCreationStepsSignalHandler.setStepOpened(
-		// 	config.sections.stepCompleted,
-		// 	CharacterCreationSteps.STEP_7,
-		// );
-		// this.characterCreationStepsSignalHandler.setStepOpened(
-		// 	config.sections.steps,
-		// 	CharacterCreationSteps.STEP_8,
-		// );
+		if (!this.languages) {
+			this.characterCreationStepsSignalHandler.setStepOpened(
+				config.sections.stepCompleted,
+				CharacterCreationSteps.STEP_7,
+			);
+		}
+		this.characterCreationStepsSignalHandler.setStepOpened(
+			config.sections.steps,
+			CharacterCreationSteps.STEP_8,
+		);
 	}
 
 	private createForm() {

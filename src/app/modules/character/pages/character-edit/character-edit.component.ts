@@ -28,8 +28,10 @@ import { CharacterCreateStep7Component } from '../../components/character-create
 import { CharacterCreateStep8Component } from '../../components/character-create-step-8/character-create-step-8.component';
 import { CharacterCreateStep9Component } from '../../components/character-create-step-9/character-create-step-9.component';
 import { CharacterCreateStep10Component } from '../../components/character-create-step-10/character-create-step-10.component';
+import { CharacterEditorFetcher } from '../../fetchers/character-editor-fetcher';
 import { CharacterFinderFetcher } from '../../fetchers/character-finder-fetcher';
 import { HitPointsInfo } from '../../form-builders/hit-points-form-builder';
+import { CharacterEditor } from '../../services/character-editor.service';
 import { CharacterFinder } from '../../services/character-finder.service';
 import { CharacterCreationStepsSignalHandler } from '../../signal-handler/character-creation-steps-signal-handler';
 import { CharacterFinderSignalHandler } from '../../signal-handler/character-finder-signal-handler';
@@ -51,7 +53,13 @@ const imports = [
 	CharacterCreateStep10Component,
 ];
 
-const providers = [Location, CharacterFinder, CharacterFinderFetcher];
+const providers = [
+	Location,
+	CharacterFinder,
+	CharacterFinderFetcher,
+	CharacterEditor,
+	CharacterEditorFetcher,
+];
 
 const config = CharacterConfig.actions;
 @Component({
@@ -65,6 +73,7 @@ const config = CharacterConfig.actions;
 export class CharacterEditComponent implements OnInit, OnDestroy {
 	characterCreationStepsSignalHandler = inject(CharacterCreationStepsSignalHandler);
 	characterFinder = inject(CharacterFinder);
+	characterEditor = inject(CharacterEditor);
 	characterSignalHandler = inject(CharacterFinderSignalHandler);
 	activatedRoute = inject(ActivatedRoute);
 
@@ -173,7 +182,7 @@ export class CharacterEditComponent implements OnInit, OnDestroy {
 	}
 
 	public save(): void {
-		console.log(this.$character());
+		this.characterEditor.run(this.$character(), '/player/characters');
 	}
 
 	private getCharacterIdFromRoute(): void {

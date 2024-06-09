@@ -1,8 +1,5 @@
 <app-navigation [title]="'Tu personaje'"></app-navigation>
 <div class="flex p-3 gap-y-5 justify-center flex-col mt-5">
-
-
-
   @if($characterLoading()){
     <app-loading [loadingStatus]="true" [noFullScreen]="true"></app-loading>
   }@else {
@@ -13,12 +10,15 @@
       <p class="text-xl text-center w-3/4 max-w-md m-auto">{{$character() | characterDisplayInfo}}</p>
     </div>
     <div class="w-full max-w-md m-auto flex flex-col gap-y-5">
-      <app-character-view-basic-data [character]="$character()"></app-character-view-basic-data>
+      <app-character-view-basic-data 
+        (onHpChanged)="hpChanged($event)"
+        [character]="$character()">
+      </app-character-view-basic-data>
       <app-character-view-stats-data [characterAttributes]="$character().attributes"></app-character-view-stats-data>
       <app-character-view-throws-data [characterSavingThrows]="$character().savingThrows"></app-character-view-throws-data>
     </div>
-    <div class="shadow-button h-12 w-12 absolute top-[5.5rem] right-3 bg-red-700 rounded-full flex justify-center items-center">
-      <i class="fa-solid fa-book-sparkles text-2xl text-white"></i>
+    <div class="shadow-button h-12 w-12 absolute top-[1rem] right-3 bg-white rounded-full flex justify-center items-center">
+      <i class="fa-solid fa-book-sparkles text-2xl text-red-700"></i>
     </div>
   }
 

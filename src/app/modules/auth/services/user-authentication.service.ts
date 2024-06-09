@@ -54,6 +54,7 @@ export class UserAuthenticator {
 
 		this.userAuthenticationSignalHandler.cleanUser();
 		this.tokenSignalHandler.cleanTokens();
+		this.router.navigate(['/auth/login']);
 	}
 
 	private async loginSuccess(responseToken: Token) {

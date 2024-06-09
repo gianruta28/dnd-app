@@ -23,7 +23,7 @@ const config = CharacterConfig.actions.create;
 	styleUrl: './character-view-throws-data.component.scss',
 })
 export class CharacterViewThrowsDataComponent implements OnInit, OnDestroy {
-	@Input() characterSavingThrows: SavingThrows;
+	@Input() characterSavingThrows: SavingThrows | undefined;
 	ngOnInit(): void {}
 
 	ngOnDestroy(): void {}

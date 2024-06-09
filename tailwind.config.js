@@ -3,7 +3,9 @@ module.exports = {
 	content: ["./src/**/*.{html,ts}"],
 	theme: {
 		extend: {
-			colors: {},
+			colors: {
+				red50: "rgba(185,28,28, 0.9)",
+			},
 		},
 	},
 	plugins: [

@@ -71,10 +71,12 @@ export class CharacterCreateStep10Component implements OnInit {
 
 	public onContinue(): void {
 		this.nextStep.emit(this.stepForm.value as SpellSlots);
-		this.characterCreationStepsSignalHandler.setStepOpened(
-			config.sections.stepCompleted,
-			CharacterCreationSteps.STEP_10,
-		);
+		if (!this.spellSlots) {
+			this.characterCreationStepsSignalHandler.setStepOpened(
+				config.sections.stepCompleted,
+				CharacterCreationSteps.STEP_10,
+			);
+		}
 		this.characterCreationStepsSignalHandler.setStepOpened(
 			config.sections.steps,
 			CharacterCreationSteps.STEP_10,

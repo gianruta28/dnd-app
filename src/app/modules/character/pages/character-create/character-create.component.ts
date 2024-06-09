@@ -76,60 +76,7 @@ export class CharacterCreateComponent implements OnInit, OnDestroy {
 	characterCreator = inject(CharacterCreator);
 
 	public characterCreationStep = CharacterCreationSteps;
-	public newCharacter: CharacterRequestDTO = {
-		attributes: {
-			wisdom: {
-				base: 12,
-				modifier: 1,
-			},
-			strength: {
-				base: 18,
-				modifier: 4,
-			},
-			dexterity: {
-				base: 14,
-				modifier: 2,
-			},
-			charisma: {
-				base: 16,
-				modifier: 3,
-			},
-			intelligence: {
-				base: 10,
-				modifier: 0,
-			},
-			constitution: {
-				base: 16,
-				modifier: 3,
-			},
-		},
-		savingThrows: {
-			strength: {
-				value: 6,
-				proficient: true,
-			},
-			charisma: {
-				value: 3,
-				proficient: false,
-			},
-			wisdom: {
-				value: 3,
-				proficient: true,
-			},
-			constitution: {
-				value: 3,
-				proficient: false,
-			},
-			intelligence: {
-				value: 2,
-				proficient: true,
-			},
-			dexterity: {
-				value: 2,
-				proficient: false,
-			},
-		},
-	};
+	public newCharacter: CharacterRequestDTO = {};
 
 	public stepOpen: CharacterCreationSteps;
 	location = inject(Location);
@@ -147,14 +94,14 @@ export class CharacterCreateComponent implements OnInit, OnDestroy {
 	});
 
 	ngOnInit(): void {
-		this.characterCreationStepsSignalHandler.setStepOpened(
-			config.sections.stepCompleted,
-			CharacterCreationSteps.STEP_6,
-		);
-		this.characterCreationStepsSignalHandler.setStepOpened(
-			config.sections.steps,
-			CharacterCreationSteps.STEP_7,
-		);
+		// this.characterCreationStepsSignalHandler.setStepOpened(
+		// 	config.sections.stepCompleted,
+		// 	CharacterCreationSteps.STEP_6,
+		// );
+		// this.characterCreationStepsSignalHandler.setStepOpened(
+		// 	config.sections.steps,
+		// 	CharacterCreationSteps.STEP_7,
+		// );
 	}
 
 	ngOnDestroy(): void {

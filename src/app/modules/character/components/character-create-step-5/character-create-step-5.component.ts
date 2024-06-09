@@ -5,19 +5,16 @@ import {
 	EventEmitter,
 	inject,
 	Input,
-	OnChanges,
 	OnInit,
 	Output,
 	Signal,
-	SimpleChanges,
 	WritableSignal,
 } from '@angular/core';
-import { AbstractControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { HitDice, HitPoints } from '@interfaces/character/character.interface';
 import { CharacterCreationSteps } from '@interfaces/character/character-creation-steps.enum';
 import { LoadingComponent } from '@shared/components/loading/loading.component';
 import { NavigationComponent } from '@shared/components/navigation/navigation.component';
-import { debounceTime } from 'rxjs';
 
 import { CharacterConfig } from '../../character.config';
 import { HitPointsFormBuilder, HitPointsInfo } from '../../form-builders/hit-points-form-builder';
@@ -36,7 +33,7 @@ const config = CharacterConfig.actions.create;
 	templateUrl: './character-create-step-5.component.html',
 	styleUrl: './character-create-step-5.component.scss',
 })
-export class CharacterCreateStep5Component implements OnInit, OnChanges {
+export class CharacterCreateStep5Component implements OnInit {
 	@Input() constitutionBonus?: number = 0;
 	@Input() hitDice?: HitDice;
 	@Input() hitPoints?: HitPoints;
@@ -54,19 +51,6 @@ export class CharacterCreateStep5Component implements OnInit, OnChanges {
 			this.characterCreationStepsSignalHandler.getStepOpened(config.sections.stepCompleted)()
 		];
 	});
-
-	ngOnChanges(changes: SimpleChanges): void {
-		console.log(changes);
-
-		if (!changes?.constitutionBonus || changes.constitutionBonus.isFirstChange()) {
-			return;
-		}
-		const hitDiceControl = this.stepForm.get('hitDice');
-		if (!hitDiceControl) {
-			return;
-		}
-		this.updateHitPoints(hitDiceControl, this.hitDice?.value);
-	}
 
 	ngOnInit(): void {
 		this.createForm();
@@ -90,10 +74,12 @@ export class CharacterCreateStep5Component implements OnInit, OnChanges {
 
 	public onContinue(): void {
 		this.nextStep.emit(this.stepForm.value as HitPointsInfo);
-		this.characterCreationStepsSignalHandler.setStepOpened(
-			config.sections.stepCompleted,
-			CharacterCreationSteps.STEP_5,
-		);
+		if (!this.hitDice && !this.hitPoints) {
+			this.characterCreationStepsSignalHandler.setStepOpened(
+				config.sections.stepCompleted,
+				CharacterCreationSteps.STEP_5,
+			);
+		}
 		this.characterCreationStepsSignalHandler.setStepOpened(
 			config.sections.steps,
 			CharacterCreationSteps.STEP_6,
@@ -105,37 +91,12 @@ export class CharacterCreateStep5Component implements OnInit, OnChanges {
 	}
 
 	private listenForm() {
-		const hitDiceControl = this.stepForm.get('hitDice');
-		hitDiceControl
-			?.get('value')
-			?.valueChanges.pipe(debounceTime(500))
-			.subscribe((value: string) => {
-				if (!hitDiceControl?.get('value')?.valid) {
-					return;
-				}
-				this.updateHitPoints(hitDiceControl, value);
-			});
-	}
-
-	private updateHitPoints(hitDiceControl: AbstractControl, value?: string) {
-		if (!value) {
-			return;
-		}
-		const [totalHitDices, diceValue] = value.split('d');
-
 		const hitDicePointsControl = this.stepForm.get('hitPoints');
-		const hptToAssign = this.getMaxHitPoints(Number(totalHitDices), Number(diceValue));
-		hitDicePointsControl?.patchValue({
-			max: hptToAssign,
-			current: hptToAssign,
-			temporary: hptToAssign,
+		hitDicePointsControl?.get('max')?.valueChanges.subscribe((value: string) => {
+			hitDicePointsControl?.patchValue({
+				current: value,
+				temporary: 0,
+			});
 		});
-		hitDiceControl?.get('total')?.patchValue(Number(totalHitDices));
-	}
-
-	private getMaxHitPoints(totalHitDices: number, diceValue: number) {
-		console.log(this.constitutionBonus);
-
-		return totalHitDices * diceValue + (this.constitutionBonus ?? 0);
 	}
 }

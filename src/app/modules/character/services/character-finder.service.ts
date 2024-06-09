@@ -32,7 +32,6 @@ export class CharacterFinder {
 				if (!value?.body) {
 					return;
 				}
-				console.log(value.body);
 
 				this.characterFinderSignalHandler.setCharacter(sections.findOne, value.body);
 			},

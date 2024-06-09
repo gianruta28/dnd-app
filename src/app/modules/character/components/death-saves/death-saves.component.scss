@@ -1,0 +1,19 @@
+.shadow-button{
+  box-shadow: 3px 0px 5px rgba(0, 0, 0, 0.75);
+}
+
+ion-picker {
+  --highlight-background: rgb(185, 28, 28);
+  --highlight-border-radius: 50px;
+
+  --fade-background-rgb: rgb(185, 28, 28);
+}
+
+ion-picker-column-option {
+  text-transform: uppercase;
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% ;
+  // color: white !important;
+
+}

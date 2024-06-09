@@ -101,6 +101,10 @@ export interface SpellSlots {
 	level8: string;
 	level9: string;
 }
+export interface DeathSaves {
+	success: number;
+	failures: number;
+}
 export interface Proficiency {
 	name: string;
 	items: string[];
@@ -132,4 +136,5 @@ export interface CharacterRequestDTO {
 	ideals?: string;
 	spellSlots?: SpellSlots;
 	inspiration?: number;
+	deathSaves?: DeathSaves;
 }

@@ -58,10 +58,12 @@ export class CharacterCreateStep9Component implements OnInit {
 
 	public onContinue(): void {
 		this.nextStep.emit(this.stepForm.value as OtherInfo);
-		this.characterCreationStepsSignalHandler.setStepOpened(
-			config.sections.stepCompleted,
-			CharacterCreationSteps.STEP_9,
-		);
+		if (!this.otherInfo) {
+			this.characterCreationStepsSignalHandler.setStepOpened(
+				config.sections.stepCompleted,
+				CharacterCreationSteps.STEP_9,
+			);
+		}
 		this.characterCreationStepsSignalHandler.setStepOpened(
 			config.sections.steps,
 			CharacterCreationSteps.STEP_10,

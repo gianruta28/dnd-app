@@ -86,10 +86,12 @@ export class CharacterCreateStep8Component implements OnInit {
 
 	public onContinue(): void {
 		this.nextStep.emit(this.stepForm.value.traits as Trait[]);
-		this.characterCreationStepsSignalHandler.setStepOpened(
-			config.sections.stepCompleted,
-			CharacterCreationSteps.STEP_8,
-		);
+		if (!this.traits?.length) {
+			this.characterCreationStepsSignalHandler.setStepOpened(
+				config.sections.stepCompleted,
+				CharacterCreationSteps.STEP_8,
+			);
+		}
 		this.characterCreationStepsSignalHandler.setStepOpened(
 			config.sections.steps,
 			CharacterCreationSteps.STEP_9,
