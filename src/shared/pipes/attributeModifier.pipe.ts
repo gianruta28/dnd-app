@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 	standalone: true,
 })
 export class AttributeModifierPipe implements PipeTransform {
-	transform(value: number): string {
+	transform(value: number | undefined): string {
 		if (value !== 0 && !value) {
 			return '';
 		}
