@@ -1,9 +1,8 @@
 
-<div class="mt-10 flex items-center justify-center bg-slate-50">
+<div class="h-dvh flex items-center justify-center bg-slate-50">
   <div class="flex flex-col sm:w-96 w-80 justify-center px-6 py-12 lg:px-8 rounded shadow-lg bg-white">
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
       <img class="mx-auto h-24 w-auto" src="assets/img/dnd-logo.png" alt="Your Company">
-      <h2 class="mt-5 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Register</h2>
     </div>
   
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -18,6 +17,14 @@
           <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
           <div class="mt-2">
             <input id="email" name="email" formControlName="email" type="email" class="block w-full rounded-md border-0 ps-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-red-700 sm:text-sm sm:leading-6">
+            <ng-container *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+              @if(registerForm.get('email')?.errors?.required){
+                <p class="text-base text-red-600">Email is required.</p>
+              }
+              @if(registerForm.get('email')?.errors?.email){
+                <p class="text-base text-red-600">Email is invalid.</p>
+              }
+            </ng-container>
           </div>
         </div>
         <div class="mt-5 flex gap-x-5">
@@ -34,6 +41,14 @@
           <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
           <div class="mt-2">
             <input id="password" name="password" formControlName="password" type="password" autocomplete="current-password" required class="block ps-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-red-700 sm:text-sm sm:leading-6">
+            <ng-container *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+              @if(passwordMismatchError){
+                <p class="text-base text-red-600">Passwords do not match</p>
+              }
+              @if(registerForm.get('password')?.errors?.minlength){
+                <p class="text-base text-red-600">Password must be at least 8 characters.</p>
+              }
+            </ng-container>
           </div>
         </div>
         <div class="mt-5">
@@ -41,9 +56,14 @@
           <div class="mt-2">
             <input id="repeatPassword" name="repeatPassword" formControlName="repeatPassword" type="password" required class="block w-full ps-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-red-700 sm:text-sm sm:leading-6">
           </div>
-          @if(passwordMismatchError){
-            <p class="text-base text-red-600">Passwords do not match</p>
-          }
+          <ng-container *ngIf="registerForm.get('repeatPassword')?.invalid && registerForm.get('repeatPassword')?.touched">
+            @if(passwordMismatchError){
+              <p class="text-base text-red-600">Passwords do not match</p>
+            }
+            @if(registerForm.get('repeatPassword')?.errors?.minlength){
+              <p class="text-base text-red-600">Password must be at least 8 characters.</p>
+            }
+          </ng-container>
         </div>
   
         <div class="mt-10">
