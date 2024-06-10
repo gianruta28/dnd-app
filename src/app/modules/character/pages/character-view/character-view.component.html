@@ -1,7 +1,12 @@
-<app-navigation [title]="'Tu personaje'"></app-navigation>
 <div class="flex p-3 gap-y-5 justify-center flex-col mt-5">
+
   @if($characterLoading()){
-    <app-loading [loadingStatus]="true" [noFullScreen]="true"></app-loading>
+    <div class="flex flex-col pt-10">
+      <div class="flex flex-1 items-center justify-center">
+    
+        <app-loading [loadingStatus]="true" [noFullScreen]="true"></app-loading>
+      </div>
+    </div>
   }@else {
     <div class="w-full flex text-center">
       <button (click)="returnNavigation()">
@@ -17,8 +22,8 @@
       <app-character-view-stats-data [characterAttributes]="$character().attributes"></app-character-view-stats-data>
       <app-character-view-throws-data [characterSavingThrows]="$character().savingThrows"></app-character-view-throws-data>
     </div>
-    <div class="shadow-button h-12 w-12 absolute top-[1rem] right-3 bg-white rounded-full flex justify-center items-center">
-      <i class="fa-solid fa-book-sparkles text-2xl text-red-700"></i>
+    <div class="shadow-button h-12 w-12 absolute top-[1rem] right-3 rounded-full flex justify-center items-center bg-red50">
+      <i class="fa-solid fa-book-sparkles text-2xl text-white"></i>
     </div>
   }
 
