@@ -1,4 +1,4 @@
-<div 
+<div (click)="expand()"
     class="
 
     flex items-center justify-center flex-col
@@ -11,7 +11,7 @@
       <p class="text-lg">{{character.name}}</p>
       <i [ngClass]="{'fa-arrow-up': expanded}"
         class="fa-solid fa-arrow-down" 
-        (click)="expand()">
+        >
       </i>
     </div>
     @if(expanded){
