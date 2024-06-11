@@ -68,8 +68,8 @@ export class RegisterComponent implements OnInit {
 			name: ['', [Validators.required]],
 			email: ['', [Validators.required, Validators.email]],
 			role: ['', [Validators.required]],
-			repeatPassword: ['', [Validators.required]],
-			password: ['', [Validators.required]],
+			repeatPassword: ['', [Validators.required, Validators.minLength(8)]],
+			password: ['', [Validators.required, Validators.minLength(8)]],
 		});
 		this.listenToFormChanges();
 	}

@@ -3,7 +3,6 @@
   <div class="flex flex-col sm:w-96 w-80 justify-center px-6 py-12 lg:px-8 rounded shadow-lg bg-white">
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
       <img class="mx-auto h-24 w-auto" src="assets/img/dnd-logo.png" alt="Your Company">
-      <h2 class="mt-5 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Register</h2>
     </div>
   
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -47,3 +46,6 @@
     </div>
   </div>
 </div>
+@if(loginLoadingSignal()){
+  <app-loading [loadingStatus]="true"></app-loading>
+}

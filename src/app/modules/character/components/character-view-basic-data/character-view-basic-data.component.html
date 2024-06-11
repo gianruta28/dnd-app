@@ -28,6 +28,9 @@
       <div class="flex text-2xl font-semibold opacity-100 z-40" (click)="openDialog()">
         <p>{{character.hitPoints?.current}}/</p>
         <p>{{character.hitPoints?.max}}</p>
+        @if(character.hitPoints?.temporary){
+          <p class="text-lg ">+{{character.hitPoints?.temporary}}</p>
+        }
       </div>
       <div class="text-2xl font-semibold">
         <p>HP</p>

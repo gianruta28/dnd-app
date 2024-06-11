@@ -5,6 +5,7 @@ import { AsyncUserFinderFetcher } from '@app/modules/user/fetchers/async-user-fi
 import { Token, TokenProcessed } from '@interfaces/core/token.interface';
 import { AuthUserRequest, UserResponseDTO } from '@interfaces/user/user.interface';
 import { UserRoles } from '@interfaces/user/user-roles.enum';
+import { ToastrService } from 'ngx-toastr';
 import { LocalStorageHandler } from 'src/shared/services/local-storage-handler.service';
 
 import { authConfig } from '../auth.config';
@@ -29,6 +30,7 @@ export class UserAuthenticator {
 		private readonly localStorageUserHandler: LocalStorageHandler<UserResponseDTO>,
 		private readonly localStorageTokenHandler: LocalStorageHandler<TokenProcessed>,
 		private readonly tokenSignalHandler: TokenSignalHandler,
+		private readonly toastr: ToastrService,
 	) {}
 
 	public login(data: AuthUserRequest): void {
@@ -43,7 +45,8 @@ export class UserAuthenticator {
 				this.userAuthenticationSignalHandler.setAuthenticationLoaded();
 			},
 			error: (error: any) => {
-				this.userAuthenticationSignalHandler.setAuthenticationLoading();
+				this.userAuthenticationSignalHandler.setAuthenticationLoaded();
+				this.toastr.error('Error al hacer log in');
 			},
 		});
 	}

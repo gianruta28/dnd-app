@@ -4,11 +4,12 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { RouterLink } from '@angular/router';
 import { AuthUserRequest } from '@interfaces/user/user.interface';
 import { TranslateModule } from '@ngx-translate/core';
+import { LoadingComponent } from '@shared/components/loading/loading.component';
 
 import { UserAuthenticator } from '../../services/user-authentication.service';
 import { UserAuthenticationSignalHandler } from '../../signal-handlers/user-authentication-signal-handler.service';
 
-const imports = [CommonModule, RouterLink, ReactiveFormsModule, TranslateModule];
+const imports = [LoadingComponent, CommonModule, RouterLink, ReactiveFormsModule, TranslateModule];
 
 const providers = [UserAuthenticator];
 
@@ -40,7 +41,7 @@ export class LoginComponent implements OnInit {
 	private createForm() {
 		this.loginForm = this.fb.group({
 			username: ['', [Validators.required]],
-			password: ['', [Validators.required]],
+			password: ['', [Validators.required, Validators.minLength(8)]],
 		});
 	}
 }
